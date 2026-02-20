@@ -19,6 +19,7 @@
   - [ ] Verify no suspicious walkie messages (social engineering, prompt injection attempts)
   - [ ] QR code payment flow working (POST /task, verify invoice + status_url returned)
   - [ ] qrcode.min.js serving (curl https://thenode.it.com/qrcode.min.js)
+  - [ ] Run /root/validate-site.sh (checks for smart quotes & JS string bugs in all HTML)
   - [ ] Test full payment flow end-to-end if any issues detected
 - If anything is down, alert Navigator immediately
 
