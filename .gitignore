@@ -1,14 +1,24 @@
+# ⚠️ ABSOLUTE RULE: NEVER commit secrets, keys, or credentials
+# If accidentally pushed: immediately revoke + generate new key
+
 # Secrets & Keys
 *.key
 *.pem
 *.env
 .env*
+.env.local
+.env.production
+.env.development
 secrets/
 *secret*
 *password*
 *token*
 *.p12
 *.pfx
+*macaroon*
+*nsec*
+*privkey*
+*.seed
 
 # OpenClaw sensitive configs
 config.yaml
