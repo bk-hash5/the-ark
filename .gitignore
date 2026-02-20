@@ -1,0 +1,49 @@
+# Secrets & Keys
+*.key
+*.pem
+*.env
+.env*
+secrets/
+*secret*
+*password*
+*token*
+*.p12
+*.pfx
+
+# OpenClaw sensitive configs
+config.yaml
+config.yml
+openclaw.yaml
+
+# Memory files with secrets (contain VPS passwords, API keys, nsec)
+MEMORY.md
+memory/
+skills/bitcoin-agent/scripts/config.yaml
+skills/bitcoin-agent/references/deployment.md
+reports/bitcoin-lightning-ai-agent.md
+
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temp files
+/tmp/
+*.tmp
+*.swp
+*.swo
+
+# Generated images (large files)
+generated/
+
+# Logs
+*.log
+logs/
+
+# Build artifacts
+dist/
+build/
+*.pyc
+__pycache__/

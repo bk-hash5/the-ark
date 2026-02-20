@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stop Paying Monthly — The Ark AI | Pay Per Use with Bitcoin</title>
+<meta name="description" content="Kill your subscriptions. Pay only when you use a tool. SEO, code review, security scans — all powered by AI, paid in sats.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a12;--bg2:#12121f;--bg3:#1a1a2e;
+  --purple:#7c3aed;--purple-glow:#a855f7;
+  --green:#22c55e;--green-dim:#16a34a;
+  --cyan:#06b6d4;--red:#ef4444;--red-dim:#dc2626;
+  --text:#e2e8f0;--text-dim:#94a3b8;
+  --border:#1e1e3a;--radius:12px;
+  --orange:#f59e0b;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--purple-glow);text-decoration:none}
+a:hover{text-decoration:underline}
+code,.code{font-family:'JetBrains Mono',monospace}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:100px 0}
+.section-label{text-transform:uppercase;font-size:.75rem;font-weight:600;letter-spacing:.1em;color:var(--purple-glow);margin-bottom:12px}
+.section-title{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;margin-bottom:16px;letter-spacing:-.02em}
+.section-sub{color:var(--text-dim);font-size:1.05rem;max-width:640px;margin-bottom:48px}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,18,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:16px 0}
+nav .container{display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.25rem;font-weight:800;letter-spacing:-.02em}
+.logo span{color:var(--green)}
+nav ul{display:flex;gap:24px;list-style:none}
+nav ul a{color:var(--text-dim);font-size:.875rem;font-weight:500;transition:color .2s}
+nav ul a:hover{color:var(--text);text-decoration:none}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:var(--radius);font-weight:600;font-size:.95rem;border:none;cursor:pointer;transition:all .2s;text-decoration:none}
+.btn-primary{background:linear-gradient(135deg,var(--purple),var(--purple-glow));color:#fff;box-shadow:0 4px 24px rgba(124,58,237,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(124,58,237,.4);text-decoration:none}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--purple);text-decoration:none}
+.btn-green{background:linear-gradient(135deg,var(--green),#10b981);color:#fff;box-shadow:0 4px 24px rgba(34,197,94,.3)}
+.btn-green:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(34,197,94,.4);text-decoration:none}
+
+/* ===== HERO ===== */
+.hero{padding:160px 0 100px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:1000px;height:1000px;background:radial-gradient(circle,rgba(239,68,68,.08) 0%,rgba(124,58,237,.06) 40%,transparent 70%);pointer-events:none}
+.hero .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);border-radius:999px;padding:8px 20px;font-size:.8rem;color:var(--red);margin-bottom:28px;font-weight:600}
+.hero h1{font-size:clamp(2.8rem,7vw,5rem);font-weight:900;letter-spacing:-.04em;line-height:1.05;margin-bottom:24px}
+.hero h1 .strike{color:var(--red);text-decoration:line-through;text-decoration-thickness:3px;opacity:.7}
+.hero h1 .green{color:var(--green)}
+.hero .tagline{font-size:clamp(1.1rem,2.5vw,1.4rem);color:var(--text-dim);margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto}
+.hero-compare{display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+.hero-price{text-align:center;padding:24px 32px;border-radius:var(--radius)}
+.hero-price.old{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}
+.hero-price.new{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2)}
+.hero-price .label{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;font-weight:600}
+.hero-price.old .label{color:var(--red)}
+.hero-price.new .label{color:var(--green)}
+.hero-price .amount{font-size:2.5rem;font-weight:900}
+.hero-price.old .amount{color:var(--red);text-decoration:line-through;text-decoration-thickness:3px}
+.hero-price.new .amount{color:var(--green)}
+.hero-price .detail{font-size:.8rem;color:var(--text-dim);margin-top:4px}
+.hero-vs{font-size:1.2rem;font-weight:800;color:var(--text-dim)}
+.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* ===== PROBLEM ===== */
+.problem{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.problem-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stat-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center}
+.stat-card .num{font-size:2rem;font-weight:900;margin-bottom:4px}
+.stat-card .num.red{color:var(--red)}
+.stat-card .num.orange{color:var(--orange)}
+.stat-card .desc{font-size:.8rem;color:var(--text-dim)}
+.problem-text h3{font-size:1.3rem;font-weight:700;margin-bottom:12px}
+.problem-text p{color:var(--text-dim);margin-bottom:16px;font-size:.95rem}
+.problem-text ul{list-style:none;padding:0}
+.problem-text li{padding:8px 0;color:var(--text-dim);font-size:.9rem;display:flex;align-items:center;gap:10px}
+.problem-text li::before{content:'💸';font-size:1rem}
+
+/* ===== COMPARISON ===== */
+.comparison-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--bg2);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
+.comparison-table thead th{padding:16px 20px;text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);background:var(--bg3);border-bottom:1px solid var(--border);font-weight:600}
+.comparison-table tbody td{padding:18px 20px;border-bottom:1px solid var(--border);font-size:.9rem;vertical-align:middle}
+.comparison-table tbody tr:last-child td{border-bottom:none}
+.comparison-table tbody tr{transition:background .2s}
+.comparison-table tbody tr:hover{background:rgba(124,58,237,.04)}
+.comp-tool{font-weight:600}
+.comp-old{color:var(--red);font-weight:700;text-decoration:line-through;font-size:1rem}
+.comp-usage{color:var(--text-dim);font-size:.85rem}
+.comp-new{color:var(--green);font-weight:700;font-size:1rem}
+.comp-save{color:var(--green);font-weight:700;font-size:.95rem}
+.comp-icon{width:28px;height:28px;border-radius:6px;background:var(--bg3);display:inline-flex;align-items:center;justify-content:center;font-size:.9rem;margin-right:10px;vertical-align:middle}
+@media(max-width:768px){
+  .comparison-table{display:block;overflow-x:auto}
+  .problem-grid{grid-template-columns:1fr}
+}
+
+/* ===== CALCULATOR ===== */
+.calculator{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:40px;max-width:700px;margin:0 auto}
+.calc-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border)}
+.calc-row:last-of-type{border-bottom:none}
+.calc-tool{font-weight:600;font-size:.9rem;flex:1}
+.calc-input{width:70px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-size:.9rem;text-align:center;font-family:'JetBrains Mono',monospace}
+.calc-input:focus{outline:none;border-color:var(--purple)}
+.calc-label{color:var(--text-dim);font-size:.8rem;margin-left:8px;width:60px}
+.calc-result{margin-top:32px;text-align:center;padding:32px;background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(6,182,212,.08));border:1px solid rgba(34,197,94,.2);border-radius:var(--radius)}
+.calc-result .saved{font-size:3rem;font-weight:900;color:var(--green);line-height:1}
+.calc-result .saved-label{font-size:1rem;color:var(--text-dim);margin-top:8px}
+.calc-result .breakdown{font-size:.85rem;color:var(--text-dim);margin-top:16px}
+
+/* ===== ALL SERVICES ===== */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.svc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;display:flex;justify-content:space-between;align-items:center;transition:all .3s}
+.svc:hover{border-color:var(--green);transform:translateY(-1px)}
+.svc-name{font-weight:600;font-size:.9rem}
+.svc-desc{color:var(--text-dim);font-size:.75rem;margin-top:2px}
+.svc-price{text-align:right}
+.svc-price .sats{color:var(--green);font-weight:700;font-size:1rem;font-family:'JetBrains Mono',monospace}
+.svc-price .usd{color:var(--text-dim);font-size:.7rem;margin-top:2px}
+
+/* ===== HOW IT WORKS ===== */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.step{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:36px 28px;text-align:center;position:relative;transition:border-color .3s}
+.step:hover{border-color:var(--purple)}
+.step-num{font-size:3.5rem;font-weight:900;background:linear-gradient(135deg,var(--purple),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:16px}
+.step h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.step p{color:var(--text-dim);font-size:.88rem}
+.step-arrow{position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--text-dim);font-size:1.5rem;z-index:2}
+@media(max-width:768px){.steps{grid-template-columns:1fr}.step-arrow{display:none}}
+
+/* ===== TRY IT ===== */
+.try-form{max-width:600px;margin:0 auto}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:.85rem;font-weight:600;margin-bottom:8px;color:var(--text)}
+.form-group select,.form-group textarea,.form-group input[type="text"]{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;color:var(--text);font-size:.9rem;font-family:'Inter',sans-serif;transition:border-color .2s}
+.form-group select:focus,.form-group textarea:focus,.form-group input[type="text"]:focus{outline:none;border-color:var(--purple)}
+.form-group textarea{min-height:120px;resize:vertical}
+.form-group select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394a3b8' fill='none' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.form-group select option{background:var(--bg2);color:var(--text)}
+.form-price{margin-top:16px;padding:16px 20px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center}
+.form-price .cost{font-size:1.2rem;font-weight:700;color:var(--green);font-family:'JetBrains Mono',monospace}
+
+/* ===== CTA ===== */
+.cta-section{text-align:center;padding:120px 0;position:relative}
+.cta-section::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(circle,rgba(34,197,94,.08) 0%,transparent 70%);pointer-events:none}
+.cta-section h2{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;margin-bottom:16px;letter-spacing:-.03em}
+.cta-section p{color:var(--text-dim);font-size:1.1rem;margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-badge{display:inline-block;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:999px;padding:6px 16px;font-size:.8rem;color:var(--green);font-weight:600;margin-bottom:24px}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--text-dim);font-size:.8rem}
+footer a{color:var(--text-dim)}
+footer a:hover{color:var(--text)}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .6s ease-out both}
+.fade-up-d1{animation-delay:.1s}
+.fade-up-d2{animation-delay:.2s}
+.fade-up-d3{animation-delay:.3s}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="container">
+    <div class="logo">The Ark <span>AI</span> 👽</div>
+    <ul>
+      <li><a href="#problem">The Problem</a></li>
+      <li><a href="#compare">Compare</a></li>
+      <li><a href="#calculator">Calculator</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#try">Try It</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="pill fade-up">🔪 SUBSCRIPTION KILLER</div>
+    <h1 class="fade-up fade-up-d1">Stop Paying <span class="strike">Monthly</span>.<br>Pay <span class="green">Per Use</span>.</h1>
+    <p class="tagline fade-up fade-up-d2">Why pay $99/month for a tool you use three times?<br>Pay 1,000 sats when you actually need it.</p>
+    
+    <div class="hero-compare fade-up fade-up-d2">
+      <div class="hero-price old">
+        <div class="label">Ahrefs Monthly</div>
+        <div class="amount">$99/mo</div>
+        <div class="detail">Used ~3 times</div>
+      </div>
+      <div class="hero-vs">vs</div>
+      <div class="hero-price new">
+        <div class="label">Ark AI Per Use</div>
+        <div class="amount">1,000 sats</div>
+        <div class="detail">≈ $0.30 per query</div>
+      </div>
+    </div>
+
+    <div class="hero-buttons fade-up fade-up-d3">
+      <a href="#try" class="btn btn-primary">⚡ Kill Your Subscriptions</a>
+      <a href="#calculator" class="btn btn-ghost">Calculate Savings →</a>
+    </div>
+  </div>
+</section>
+
+<!-- The Problem -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="problem-text">
+        <div class="section-label">The Problem</div>
+        <h2 class="section-title">Subscription Fatigue Is Real</h2>
+        <p>The average developer pays <strong>$200+/month</strong> for SaaS tools they use a handful of times each. You're renting a fleet of bulldozers to plant a flower.</p>
+        <h3>Sound familiar?</h3>
+        <ul>
+          <li>Paying $99/mo for Ahrefs but running 3 SEO checks</li>
+          <li>Grammarly Pro you open once a week</li>
+          <li>Security scanner that runs on deploy day only</li>
+          <li>PDF tool you needed that one time… 4 months ago</li>
+          <li>"Cancel before trial ends" sticky notes everywhere</li>
+        </ul>
+      </div>
+      <div class="problem-stats">
+        <div class="stat-card">
+          <div class="num red">$232</div>
+          <div class="desc">Avg. monthly tool spend</div>
+        </div>
+        <div class="stat-card">
+          <div class="num orange">3.2×</div>
+          <div class="desc">Avg. uses per tool</div>
+        </div>
+        <div class="stat-card">
+          <div class="num red">73%</div>
+          <div class="desc">Of subscriptions underused</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" style="color:var(--green)">$0</div>
+          <div class="desc">What you should pay when idle</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison -->
+<section id="compare">
+  <div class="container">
+    <div class="section-label">The Comparison</div>
+    <h2 class="section-title">See What You're Actually Paying</h2>
+    <p class="section-sub">We took 7 popular subscription tools and calculated what they <em>really</em> cost per use — then showed our price.</p>
+    
+    <div style="overflow-x:auto">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Monthly Price</th>
+          <th>Typical Usage</th>
+          <th>Their Cost/Use</th>
+          <th>Ark AI Price</th>
+          <th>You Save</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="comp-icon">🔍</span><span class="comp-tool">Ahrefs</span></td>
+          <td class="comp-old">$99/mo</td>
+          <td class="comp-usage">~3 queries</td>
+          <td class="comp-usage">$33.00/query</td>
+          <td class="comp-new">1,000 sats ≈ $0.30</td>
+          <td class="comp-save">99%</td>
+        </tr>
+        <tr>
+          <td><span class="comp-icon">✍️</span><span class="comp-tool">Grammarly</span></td>
+          <td class="comp-old">$12/mo</td>
+          <td class="comp-usage">~5 docs</td>
+          <td class="comp-usage">$2.40/doc</td>
+          <td class="comp-new">100 sats ≈ $0.03</td>
+          <td class="comp-save">98%</td>
+        </tr>
+        <tr>
+          <td><span class="comp-icon">🛡️</span><span class="comp-tool">Snyk</span></td>
+          <td class="comp-old">$25/mo</td>
+          <td class="comp-usage">~4 scans</td>
+          <td class="comp-usage">$6.25/scan</td>
+          <td class="comp-new">500 sats ≈ $0.15</td>
+          <td class="comp-save">97%</td>
+        </tr>
+        <tr>
+          <td><span class="comp-icon">🔬</span><span class="comp-tool">Codacy</span></td>
+          <td class="comp-old">$15/mo</td>
+          <td class="comp-usage">~4 reviews</td>
+          <td class="comp-usage">$3.75/review</td>
+          <td class="comp-new">500 sats ≈ $0.15</td>
+          <td class="comp-save">96%</td>
+        </tr>
+        <tr>
+          <td><span class="comp-icon">🖼️</span><span class="comp-tool">remove.bg</span></td>
+          <td class="comp-old">$12/mo</td>
+          <td class="comp-usage">~3 images</td>
+          <td class="comp-usage">$4.00/image</td>
+          <td class="comp-new">200 sats ≈ $0.06</td>
+          <td class="comp-save">98%</td>
+        </tr>
+        <tr>
+          <td><span class="comp-icon">📄</span><span class="comp-tool">PDF.co</span></td>
+          <td class="comp-old">$20/mo</td>
+          <td class="comp-usage">~2 extracts</td>
+          <td class="comp-usage">$10.00/extract</td>
+          <td class="comp-new">200 sats ≈ $0.06</td>
+          <td class="comp-save">99%</td>
+        </tr>
+        <tr>
+          <td><span class="comp-icon">📧</span><span class="comp-tool">hunter.io</span></td>
+          <td class="comp-old">$49/mo</td>
+          <td class="comp-usage">~5 lookups</td>
+          <td class="comp-usage">$9.80/lookup</td>
+          <td class="comp-new">200 sats ≈ $0.06</td>
+          <td class="comp-save">99%</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="color:var(--text-dim);font-size:.8rem;margin-top:12px;text-align:center">* Sat prices at ~$0.0003/sat. Actual savings depend on usage.</p>
+  </div>
+</section>
+
+<!-- Calculator -->
+<section id="calculator" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container" style="text-align:center">
+    <div class="section-label">Savings Calculator</div>
+    <h2 class="section-title">How Much Would You Save?</h2>
+    <p class="section-sub" style="margin-left:auto;margin-right:auto">Enter how many times you use each tool per month. We'll do the math.</p>
+    
+    <div class="calculator">
+      <div class="calc-row">
+        <span class="calc-tool">🔍 SEO Analysis <span style="color:var(--red);font-size:.8rem">(vs Ahrefs $99/mo)</span></span>
+        <input type="number" class="calc-input" id="calc-seo" min="0" value="3" data-sub="99" data-sats="1000">
+        <span class="calc-label">× /mo</span>
+      </div>
+      <div class="calc-row">
+        <span class="calc-tool">✍️ Grammar Check <span style="color:var(--red);font-size:.8rem">(vs Grammarly $12/mo)</span></span>
+        <input type="number" class="calc-input" id="calc-grammar" min="0" value="5" data-sub="12" data-sats="100">
+        <span class="calc-label">× /mo</span>
+      </div>
+      <div class="calc-row">
+        <span class="calc-tool">🛡️ Security Scan <span style="color:var(--red);font-size:.8rem">(vs Snyk $25/mo)</span></span>
+        <input type="number" class="calc-input" id="calc-security" min="0" value="4" data-sub="25" data-sats="500">
+        <span class="calc-label">× /mo</span>
+      </div>
+      <div class="calc-row">
+        <span class="calc-tool">🔬 Code Review <span style="color:var(--red);font-size:.8rem">(vs Codacy $15/mo)</span></span>
+        <input type="number" class="calc-input" id="calc-code" min="0" value="4" data-sub="15" data-sats="500">
+        <span class="calc-label">× /mo</span>
+      </div>
+      <div class="calc-row">
+        <span class="calc-tool">🖼️ AI Descriptions <span style="color:var(--red);font-size:.8rem">(vs remove.bg $12/mo)</span></span>
+        <input type="number" class="calc-input" id="calc-img" min="0" value="3" data-sub="12" data-sats="200">
+        <span class="calc-label">× /mo</span>
+      </div>
+      <div class="calc-row">
+        <span class="calc-tool">📄 PDF Extract <span style="color:var(--red);font-size:.8rem">(vs PDF.co $20/mo)</span></span>
+        <input type="number" class="calc-input" id="calc-pdf" min="0" value="2" data-sub="20" data-sats="200">
+        <span class="calc-label">× /mo</span>
+      </div>
+      <div class="calc-row">
+        <span class="calc-tool">📧 Email Copywriting <span style="color:var(--red);font-size:.8rem">(vs hunter.io $49/mo)</span></span>
+        <input type="number" class="calc-input" id="calc-email" min="0" value="5" data-sub="49" data-sats="200">
+        <span class="calc-label">× /mo</span>
+      </div>
+      
+      <div class="calc-result">
+        <div class="saved" id="calc-saved">$228.70</div>
+        <div class="saved-label">saved per month</div>
+        <div class="breakdown" id="calc-breakdown">Subscriptions: $232/mo → Ark AI: $3.30/mo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- All 33 Services -->
+<section id="services">
+  <div class="container">
+    <div class="section-label">Full Arsenal</div>
+    <h2 class="section-title">33 AI Services. Zero Subscriptions.</h2>
+    <p class="section-sub">Every tool you need, paid per use. No accounts. No commitments. Just results.</p>
+    
+    <div class="services-grid">
+      <div class="svc"><div><div class="svc-name">🔍 SEO Analysis</div><div class="svc-desc">Full site audit & keyword analysis</div></div><div class="svc-price"><div class="sats">1,000 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">✍️ Grammar & Writing</div><div class="svc-desc">Document proofreading & style</div></div><div class="svc-price"><div class="sats">100 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🛡️ Security Scan</div><div class="svc-desc">Vulnerability detection</div></div><div class="svc-price"><div class="sats">500 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🔬 Code Review</div><div class="svc-desc">AI-powered code analysis</div></div><div class="svc-price"><div class="sats">500 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🖼️ AI Descriptions</div><div class="svc-desc">Image alt text & descriptions</div></div><div class="svc-price"><div class="sats">200 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">📄 PDF Extract</div><div class="svc-desc">Text & data from PDFs</div></div><div class="svc-price"><div class="sats">200 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">📧 Email Copywriting</div><div class="svc-desc">Professional email drafts</div></div><div class="svc-price"><div class="sats">200 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🌐 Web Scraping</div><div class="svc-desc">Extract data from any URL</div></div><div class="svc-price"><div class="sats">200 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">📊 Data Analysis</div><div class="svc-desc">CSV/JSON analysis & insights</div></div><div class="svc-price"><div class="sats">500 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🎨 Image Generation</div><div class="svc-desc">AI art & graphics creation</div></div><div class="svc-price"><div class="sats">500 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">💬 Chat Completion</div><div class="svc-desc">GPT-4 level conversations</div></div><div class="svc-price"><div class="sats">100 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🔄 Code Translation</div><div class="svc-desc">Convert between languages</div></div><div class="svc-price"><div class="sats">300 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">📝 Summarization</div><div class="svc-desc">Condense long documents</div></div><div class="svc-price"><div class="sats">100 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🌍 Translation</div><div class="svc-desc">50+ language pairs</div></div><div class="svc-price"><div class="sats">100 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🎙️ Speech to Text</div><div class="svc-desc">Audio transcription</div></div><div class="svc-price"><div class="sats">300 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🔊 Text to Speech</div><div class="svc-desc">Natural voice generation</div></div><div class="svc-price"><div class="sats">200 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">📋 Resume Builder</div><div class="svc-desc">Professional resume drafts</div></div><div class="svc-price"><div class="sats">300 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">📈 Market Research</div><div class="svc-desc">Competitor & trend analysis</div></div><div class="svc-price"><div class="sats">500 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🏗️ Architecture Review</div><div class="svc-desc">System design feedback</div></div><div class="svc-price"><div class="sats">1,000 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🧪 Test Generation</div><div class="svc-desc">Auto-generate unit tests</div></div><div class="svc-price"><div class="sats">500 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">📖 Documentation</div><div class="svc-desc">API docs & README generation</div></div><div class="svc-price"><div class="sats">300 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🎯 Ad Copy</div><div class="svc-desc">Marketing & ad text</div></div><div class="svc-price"><div class="sats">200 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🐛 Bug Detection</div><div class="svc-desc">Find bugs in your code</div></div><div class="svc-price"><div class="sats">500 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">⚡ Performance Audit</div><div class="svc-desc">Speed & optimization tips</div></div><div class="svc-price"><div class="sats">500 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🔐 Password Audit</div><div class="svc-desc">Security strength check</div></div><div class="svc-price"><div class="sats">100 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">📱 Mobile UI Review</div><div class="svc-desc">UX feedback & suggestions</div></div><div class="svc-price"><div class="sats">500 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🗃️ Database Query</div><div class="svc-desc">SQL generation & optimization</div></div><div class="svc-price"><div class="sats">200 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">📦 Dependency Audit</div><div class="svc-desc">Package vulnerability check</div></div><div class="svc-price"><div class="sats">300 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🎭 Sentiment Analysis</div><div class="svc-desc">Text emotion detection</div></div><div class="svc-price"><div class="sats">100 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🏷️ Entity Extraction</div><div class="svc-desc">Names, dates, entities from text</div></div><div class="svc-price"><div class="sats">100 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">📊 Chart Generation</div><div class="svc-desc">Data visualization</div></div><div class="svc-price"><div class="sats">300 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">🔗 API Testing</div><div class="svc-desc">Endpoint health & response check</div></div><div class="svc-price"><div class="sats">200 sats</div></div></div>
+      <div class="svc"><div><div class="svc-name">💡 Brainstorming</div><div class="svc-desc">Creative ideation sessions</div></div><div class="svc-price"><div class="sats">100 sats</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section id="how" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container" style="text-align:center">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Three Steps. No Sign-Up.</h2>
+    <p class="section-sub" style="margin-left:auto;margin-right:auto">No accounts. No API keys. No credit cards. Just Bitcoin Lightning.</p>
+    
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Send Your Task</h3>
+        <p>Pick a service and describe what you need. Paste a URL, upload a file, or just type your request.</p>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Pay the Invoice</h3>
+        <p>Get a Lightning invoice for the exact amount. Scan with any Bitcoin wallet. Takes 2 seconds.</p>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Get Your Result</h3>
+        <p>Results delivered instantly after payment. Download, copy, or integrate via API. Done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Try It -->
+<section id="try">
+  <div class="container" style="text-align:center">
+    <div class="section-label">Try It Now</div>
+    <h2 class="section-title">Kill a Subscription Right Now</h2>
+    <p class="section-sub" style="margin-left:auto;margin-right:auto">Pick a service, describe your task, and see what you would have paid vs what you'll actually pay.</p>
+    
+    <div class="try-form">
+      <div class="form-group">
+        <label>Choose a Service</label>
+        <select id="try-service">
+          <option value="" disabled selected>Select a service...</option>
+          <option value="seo" data-sats="1000" data-replaces="Ahrefs ($99/mo)">🔍 SEO Analysis — 1,000 sats</option>
+          <option value="grammar" data-sats="100" data-replaces="Grammarly ($12/mo)">✍️ Grammar Check — 100 sats</option>
+          <option value="security" data-sats="500" data-replaces="Snyk ($25/mo)">🛡️ Security Scan — 500 sats</option>
+          <option value="code" data-sats="500" data-replaces="Codacy ($15/mo)">🔬 Code Review — 500 sats</option>
+          <option value="image" data-sats="200" data-replaces="remove.bg ($12/mo)">🖼️ AI Descriptions — 200 sats</option>
+          <option value="pdf" data-sats="200" data-replaces="PDF.co ($20/mo)">📄 PDF Extract — 200 sats</option>
+          <option value="email" data-sats="200" data-replaces="hunter.io ($49/mo)">📧 Email Copywriting — 200 sats</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Your Task</label>
+        <textarea id="try-task" placeholder="e.g., Analyze SEO for https://mysite.com — check meta tags, keyword density, and backlink profile"></textarea>
+      </div>
+      <div class="form-price" id="try-price" style="display:none">
+        <div>
+          <div style="font-size:.85rem;color:var(--text-dim)">This would cost you <span id="try-replaces" style="color:var(--red);text-decoration:line-through;font-weight:600"></span></div>
+          <div style="font-size:.85rem;color:var(--text-dim);margin-top:2px">Instead, you'll pay:</div>
+        </div>
+        <div class="cost" id="try-cost">⚡ 1,000 sats</div>
+      </div>
+      <div style="margin-top:24px">
+        <button class="btn btn-green" id="try-submit" style="width:100%;justify-content:center;font-size:1.05rem;padding:18px" disabled>⚡ Send Task & Get Invoice</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-badge">🎁 Limited Time</div>
+    <h2>Your First Task Is <span style="color:var(--green)">On Us</span></h2>
+    <p>Try any service free. No account needed. No credit card. No "cancel before trial ends" nonsense.</p>
+    <div class="hero-buttons">
+      <a href="#try" class="btn btn-green" style="font-size:1.1rem;padding:18px 40px">⚡ Try Free — No Strings</a>
+    </div>
+    <p style="color:var(--text-dim);font-size:.8rem;margin-top:20px">Powered by Bitcoin Lightning. Instant. Private. Sovereign.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p style="margin-bottom:8px"><strong>The Ark AI</strong> 👽 — AI that works for sats</p>
+    <p>Built on Bitcoin Lightning ⚡ &nbsp;|&nbsp; <a href="/">Home</a> &nbsp;|&nbsp; <a href="/devtools.html">API Docs</a></p>
+  </div>
+</footer>
+
+<script>
+// Calculator
+const SAT_USD = 0.0003;
+const inputs = document.querySelectorAll('.calc-input');
+
+function updateCalc() {
+  let totalSub = 0, totalSats = 0;
+  inputs.forEach(inp => {
+    const uses = parseInt(inp.value) || 0;
+    const sub = parseFloat(inp.dataset.sub);
+    const sats = parseInt(inp.dataset.sats);
+    if (uses > 0) totalSub += sub;
+    totalSats += uses * sats;
+  });
+  const totalUsd = totalSats * SAT_USD;
+  const saved = totalSub - totalUsd;
+  document.getElementById('calc-saved').textContent = saved > 0 ? `$${saved.toFixed(2)}` : '$0';
+  document.getElementById('calc-breakdown').textContent = 
+    `Subscriptions: $${totalSub.toFixed(0)}/mo → Ark AI: $${totalUsd.toFixed(2)}/mo (${totalSats.toLocaleString()} sats)`;
+}
+inputs.forEach(inp => inp.addEventListener('input', updateCalc));
+updateCalc();
+
+// Try It form
+const tryService = document.getElementById('try-service');
+const tryTask = document.getElementById('try-task');
+const tryPrice = document.getElementById('try-price');
+const tryReplaces = document.getElementById('try-replaces');
+const tryCost = document.getElementById('try-cost');
+const trySubmit = document.getElementById('try-submit');
+
+tryService.addEventListener('change', () => {
+  const opt = tryService.selectedOptions[0];
+  if (opt && opt.dataset.sats) {
+    tryPrice.style.display = 'flex';
+    tryReplaces.textContent = opt.dataset.replaces;
+    tryCost.textContent = `⚡ ${parseInt(opt.dataset.sats).toLocaleString()} sats`;
+    checkReady();
+  }
+});
+tryTask.addEventListener('input', checkReady);
+
+function checkReady() {
+  trySubmit.disabled = !(tryService.value && tryTask.value.trim().length > 5);
+}
+
+trySubmit.addEventListener('click', () => {
+  const svc = tryService.value;
+  const task = encodeURIComponent(tryTask.value.trim());
+  // Link to main site or API
+  alert('🚀 Coming soon! This will generate a Lightning invoice for your task.\n\nService: ' + tryService.selectedOptions[0].text + '\nTask: ' + tryTask.value.trim());
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deploy Your Own Bitcoin AI Agent | Ark AI 👽⚡</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--bg2:#12121f;--purple:#8b5cf6;--purple-glow:#7c3aed;--green:#22c55e;--green-dim:#16a34a;--text:#e2e8f0;--muted:#94a3b8;--border:#1e1e3a}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--green);text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* Hero */
+.hero{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;padding:80px 24px}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(139,92,246,.15) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-block;padding:6px 16px;border:1px solid var(--purple);border-radius:999px;font-size:.85rem;color:var(--purple);margin-bottom:24px;letter-spacing:.5px}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.15;margin-bottom:20px;background:linear-gradient(135deg,#fff 30%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.15rem;color:var(--muted);max-width:600px;margin:0 auto 36px}
+.btn{display:inline-block;padding:16px 36px;border-radius:12px;font-size:1.05rem;font-weight:700;transition:all .2s;cursor:pointer;border:none}
+.btn-primary{background:linear-gradient(135deg,var(--purple),var(--purple-glow));color:#fff;box-shadow:0 0 30px rgba(139,92,246,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(139,92,246,.5)}
+.btn-green{background:linear-gradient(135deg,var(--green),var(--green-dim));color:#000}
+.btn-green:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(34,197,94,.4)}
+
+/* Sections */
+section{padding:80px 0}
+.section-label{text-transform:uppercase;font-size:.8rem;letter-spacing:2px;color:var(--purple);margin-bottom:12px;text-align:center}
+.section-title{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;text-align:center;margin-bottom:48px}
+
+/* Features */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.feature-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px;transition:border-color .2s}
+.feature-card:hover{border-color:var(--purple)}
+.feature-icon{font-size:2rem;margin-bottom:16px}
+.feature-card h3{font-size:1.15rem;margin-bottom:8px}
+.feature-card p{color:var(--muted);font-size:.95rem}
+
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:900px;margin:0 auto}
+.price-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:36px;text-align:center;position:relative}
+.price-card.featured{border-color:var(--purple);box-shadow:0 0 40px rgba(139,92,246,.15)}
+.price-card .label{font-size:.85rem;color:var(--muted);margin-bottom:8px}
+.price-card .amount{font-size:2.4rem;font-weight:800;margin-bottom:4px}
+.price-card .sats{color:var(--green);font-size:.95rem;font-weight:600}
+.price-card .desc{color:var(--muted);font-size:.9rem;margin-top:12px}
+.popular-tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;padding:4px 16px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.5px}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;max-width:900px;margin:0 auto}
+.step{text-align:center;padding:24px}
+.step-num{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--purple-glow));display:inline-flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:800;margin-bottom:20px}
+.step h3{font-size:1.15rem;margin-bottom:8px}
+.step p{color:var(--muted);font-size:.95rem}
+.step-arrow{display:none}
+
+/* FAQ */
+.faq-list{max-width:700px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0}
+.faq-q{font-weight:700;font-size:1.05rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q::after{content:'+';font-size:1.4rem;color:var(--purple);transition:transform .2s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{color:var(--muted);font-size:.95rem;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s}
+.faq-item.open .faq-a{max-height:200px;padding-top:12px}
+
+/* CTA */
+.final-cta{text-align:center;padding:100px 24px;position:relative}
+.final-cta::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(circle,rgba(34,197,94,.1) 0%,transparent 70%);pointer-events:none}
+.final-cta h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:16px}
+.final-cta p{color:var(--muted);margin-bottom:36px;font-size:1.1rem}
+
+footer{text-align:center;padding:40px 24px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+<div class="container">
+<div class="hero-badge">👽⚡ Ark AI</div>
+<h1>Get Your Own AI Agent That Earns Bitcoin 24/7</h1>
+<p>A fully deployed AI agent that accepts Lightning payments, runs 7 services, and puts sats in your wallet — on autopilot.</p>
+<a href="https://njump.me/npub1a4yf0ynuaxkse4usqc6qw7td6tfkyxk2sxfju993nukjmkk2mxtsfnttfh" class="btn btn-primary" target="_blank">⚡ Order via Nostr DM</a>
+</div>
+</section>
+
+<!-- What You Get -->
+<section>
+<div class="container">
+<div class="section-label">What You Get</div>
+<div class="section-title">Everything to Run a Bitcoin-Native AI Business</div>
+<div class="features-grid">
+<div class="feature-card">
+<div class="feature-icon">⚡</div>
+<h3>Lightning Payments</h3>
+<p>Accept sats instantly via Lightning. Every payment goes straight to your wallet — self-custodial, no middlemen.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🤖</div>
+<h3>7 AI Services</h3>
+<p>Image generation, chat, code assistance, translations, summaries, voice, and more — all monetized from day one.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🌐</div>
+<h3>Custom Domain</h3>
+<p>Your agent runs on your own domain. Professional, brandable, and fully under your control.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🟣</div>
+<h3>Nostr Integration</h3>
+<p>Your agent lives on Nostr. Discoverable by millions, interoperable with the open protocol ecosystem.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🔑</div>
+<h3>Self-Custodial</h3>
+<p>Your keys, your coins. You hold the Lightning keys. We never touch your sats.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🛡️</div>
+<h3>Fully Yours</h3>
+<p>Open infrastructure you own and control. No vendor lock-in. Fork it, mod it, make it yours.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Pricing -->
+<section style="background:var(--bg2)">
+<div class="container">
+<div class="section-label">Pricing</div>
+<div class="section-title">Simple. Transparent. In Sats.</div>
+<div class="pricing-grid">
+<div class="price-card featured">
+<div class="popular-tag">MOST POPULAR</div>
+<div class="label">Full Setup &amp; Deployment</div>
+<div class="amount">100,000</div>
+<div class="sats">sats</div>
+<div class="desc">We handle everything — server, domain, agent config, Lightning wallet, all 7 services live and earning.</div>
+</div>
+<div class="price-card">
+<div class="label">Self-Hosted Setup</div>
+<div class="amount">50,000</div>
+<div class="sats">sats</div>
+<div class="desc">You provide the VPS. We deploy, configure, and hand you the keys. Full agent, your infrastructure.</div>
+</div>
+<div class="price-card">
+<div class="label">Monthly Support</div>
+<div class="amount">10,000</div>
+<div class="sats">sats / mo</div>
+<div class="desc">Updates, troubleshooting, new service integrations. Cancel anytime — no lock-in.</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- How It Works -->
+<section>
+<div class="container">
+<div class="section-label">How It Works</div>
+<div class="section-title">Live in 3 Steps</div>
+<div class="steps">
+<div class="step">
+<div class="step-num">1</div>
+<h3>Order via Nostr DM</h3>
+<p>Send us a DM with your requirements. Pick your plan. Pay in sats.</p>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<h3>We Deploy</h3>
+<p>Your agent goes live within 24–48 hours. Domain, Lightning, services — all configured.</p>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<h3>You Earn</h3>
+<p>Your AI agent starts serving customers and stacking sats to your wallet. Autopilot mode: on.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--bg2)">
+<div class="container">
+<div class="section-label">FAQ</div>
+<div class="section-title">Common Questions</div>
+<div class="faq-list">
+<div class="faq-item">
+<div class="faq-q">Do I need to know how to code?</div>
+<div class="faq-a">Nope. We handle all the technical setup. You just tell us what you want and we build it.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">How long does setup take?</div>
+<div class="faq-a">24–48 hours from payment. Most agents are live within a day.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Who controls the Bitcoin?</div>
+<div class="faq-a">You do. Your keys, your coins. The Lightning wallet is self-custodial — we never have access to your funds.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">What are the ongoing costs?</div>
+<div class="faq-a">A basic VPS runs about $6/month. That's it. The agent pays for itself fast.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Can I customize the services?</div>
+<div class="faq-a">Absolutely. Choose which AI services to offer, set your own pricing in sats, and brand it however you like.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">What if I want to migrate or shut down?</div>
+<div class="faq-a">It's your server and your code. Export, migrate, or shut down anytime. Zero lock-in.</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta">
+<div class="container">
+<h2>Start Stacking Sats with AI 👽⚡</h2>
+<p>Your agent is one DM away. Let's build it.</p>
+<a href="https://njump.me/npub1a4yf0ynuaxkse4usqc6qw7td6tfkyxk2sxfju993nukjmkk2mxtsfnttfh" class="btn btn-green" target="_blank">⚡ DM Us on Nostr</a>
+</div>
+</section>
+
+<footer>
+<div class="container">👽⚡ Ark AI — Bitcoin-native AI agents for the sovereign individual.</div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+q.addEventListener('click',()=>{
+q.parentElement.classList.toggle('open');
+});
+});
+</script>
+</body>
+</html>

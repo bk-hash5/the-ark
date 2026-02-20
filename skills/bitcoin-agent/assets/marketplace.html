@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Developer Marketplace — The Ark AI</title>
+<meta name="description" content="66 premium developer tools. Pay per use in Bitcoin sats. No subscriptions. Built for developers everywhere.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--bg2:#12121a;--bg3:#1a1a2e;--accent:#f7931a;--accent2:#ff6b00;--green:#00d4aa;--blue:#4a9eff;--purple:#a855f7;--pink:#ec4899;--text:#e2e8f0;--text2:#94a3b8;--border:#1e293b;--card:#13131f;--card-hover:#1a1a2e;--radius:12px;--sat-rate:0.00099}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,10,15,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-size:1.25rem;font-weight:700;color:var(--accent)}
+.nav-links{display:flex;gap:1.5rem;font-size:0.9rem}
+.nav-links a{color:var(--text2);transition:color 0.2s}
+.nav-links a:hover{color:var(--accent);text-decoration:none}
+
+/* Hero */
+.hero{text-align:center;padding:5rem 2rem 3rem;background:radial-gradient(ellipse at 50% 0%,rgba(247,147,26,0.08) 0%,transparent 60%)}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;margin-bottom:1rem;background:linear-gradient(135deg,#fff 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .subtitle{font-size:clamp(1rem,2.5vw,1.4rem);color:var(--text2);max-width:700px;margin:0 auto 2rem}
+.hero .savings{display:inline-block;background:linear-gradient(135deg,rgba(0,212,170,0.15),rgba(0,212,170,0.05));border:1px solid rgba(0,212,170,0.3);border-radius:50px;padding:0.75rem 2rem;font-size:1.05rem;color:var(--green);margin-bottom:2rem}
+.hero .savings s{color:var(--text2);opacity:0.7}
+.stats{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;margin-top:1.5rem}
+.stat{text-align:center}
+.stat .num{font-size:2rem;font-weight:800;color:var(--accent)}
+.stat .label{font-size:0.85rem;color:var(--text2)}
+
+/* Search */
+.search-wrap{max-width:700px;margin:0 auto 2rem;padding:0 2rem}
+.search-bar{width:100%;padding:1rem 1.25rem 1rem 3rem;background:var(--bg2);border:1px solid var(--border);border-radius:50px;color:var(--text);font-size:1rem;outline:none;transition:border-color 0.2s}
+.search-bar:focus{border-color:var(--accent)}
+.search-wrap{position:relative}
+.search-wrap::before{content:'🔍';position:absolute;left:calc(2rem + 1rem);top:50%;transform:translateY(-50%);font-size:1.1rem;z-index:1}
+
+/* Category Nav */
+.cat-nav{display:flex;gap:0.5rem;padding:1rem 2rem;overflow-x:auto;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.cat-btn{padding:0.5rem 1.25rem;border-radius:50px;border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;font-size:0.85rem;white-space:nowrap;transition:all 0.2s}
+.cat-btn:hover,.cat-btn.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:600}
+
+/* Sections */
+.section{padding:2rem 2rem 1rem;max-width:1400px;margin:0 auto}
+.section-head{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem}
+.section-head h2{font-size:1.5rem;font-weight:700}
+.section-head .count{background:var(--bg3);padding:0.2rem 0.7rem;border-radius:50px;font-size:0.8rem;color:var(--text2)}
+
+/* Service Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:2rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;transition:all 0.25s;cursor:default;position:relative;overflow:hidden}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 30px rgba(247,147,26,0.1)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.5rem}
+.card h3{font-size:1rem;font-weight:600;flex:1}
+.card .price{text-align:right}
+.card .sats{font-size:1.1rem;font-weight:700;color:var(--accent)}
+.card .usd{font-size:0.75rem;color:var(--text2)}
+.card .desc{font-size:0.85rem;color:var(--text2);margin-bottom:1rem;line-height:1.5}
+.try-btn{width:100%;padding:0.6rem;border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:8px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s}
+.try-btn:hover{background:var(--accent);color:#000}
+
+/* Expanded form */
+.card-form{display:none;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.card-form.open{display:block}
+.card-form textarea{width:100%;min-height:80px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:0.75rem;color:var(--text);font-size:0.85rem;resize:vertical;margin-bottom:0.75rem}
+.card-form textarea:focus{outline:none;border-color:var(--accent)}
+.submit-btn{width:100%;padding:0.6rem;background:var(--accent);color:#000;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:0.9rem}
+.submit-btn:hover{background:var(--accent2)}
+.card-result{margin-top:0.75rem;padding:0.75rem;background:var(--bg);border-radius:8px;font-size:0.85rem;display:none}
+.card-result.show{display:block}
+.qr-area{text-align:center;margin-top:0.75rem}
+.qr-area img{max-width:180px;border-radius:8px}
+
+/* Global South Section */
+.global-south{max-width:1000px;margin:3rem auto;padding:3rem 2rem;background:linear-gradient(135deg,rgba(0,212,170,0.05),rgba(74,158,255,0.05));border:1px solid rgba(0,212,170,0.2);border-radius:20px;text-align:center}
+.global-south h2{font-size:2rem;margin-bottom:1rem}
+.global-south p{color:var(--text2);max-width:700px;margin:0 auto 1.5rem;font-size:1.05rem;line-height:1.7}
+.gs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:2rem;text-align:left}
+.gs-card{background:rgba(0,0,0,0.3);border-radius:var(--radius);padding:1.25rem}
+.gs-card h4{margin-bottom:0.5rem;font-size:1rem}
+.gs-card p{font-size:0.85rem;color:var(--text2);margin:0}
+
+/* Bundles */
+.bundle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem;margin-bottom:3rem}
+.bundle{background:linear-gradient(135deg,var(--card),var(--bg3));border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;position:relative;overflow:hidden}
+.bundle::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--purple))}
+.bundle h3{font-size:1.1rem;margin-bottom:0.5rem}
+.bundle .chain{font-size:0.8rem;color:var(--text2);margin-bottom:0.75rem;line-height:1.6}
+.bundle .chain span{display:inline-block;background:var(--bg);padding:0.15rem 0.5rem;border-radius:4px;margin:0.15rem 0.1rem;font-size:0.75rem}
+.bundle .chain .arrow{color:var(--accent);padding:0 0.2rem}
+.bundle-price{display:flex;justify-content:space-between;align-items:center;margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--border)}
+.bundle-price .sats{font-size:1.2rem;font-weight:700;color:var(--accent)}
+.bundle-price .savings-tag{background:rgba(0,212,170,0.15);color:var(--green);padding:0.2rem 0.6rem;border-radius:50px;font-size:0.75rem;font-weight:600}
+
+/* Footer */
+.footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--border);margin-top:3rem}
+.footer-links{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.footer-links a{color:var(--text2);font-size:0.9rem}
+.footer-links a:hover{color:var(--accent)}
+.footer p{color:var(--text2);font-size:0.8rem}
+
+/* Responsive */
+@media(max-width:600px){
+  .hero{padding:3rem 1rem 2rem}
+  .stats{gap:1.5rem}
+  .nav{padding:0.75rem 1rem}
+  .nav-links{gap:0.75rem;font-size:0.8rem}
+  .section{padding:1.5rem 1rem 0.5rem}
+  .grid{grid-template-columns:1fr}
+  .bundle-grid{grid-template-columns:1fr}
+  .gs-grid{grid-template-columns:1fr}
+}
+
+/* Hide filtered */
+.card.hidden,.bundle.hidden{display:none}
+.section.hidden{display:none}
+
+/* Animations */
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.card{animation:fadeIn 0.3s ease}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">⚡ The Ark AI</div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/devtools">DevTools</a>
+    <a href="/market" style="color:var(--accent)">Marketplace</a>
+    <a href="/nosubs">No Subs</a>
+    <a href="/deploy">Deploy</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>🌍 66 Developer Tools.<br>Pay Per Use. Anywhere in the World.</h1>
+  <p class="subtitle">Premium AI-powered developer tools accessible to everyone. No accounts. No subscriptions. Just Bitcoin Lightning.</p>
+  <div class="savings">
+    <s>$200+/month</s> in subscriptions → Our most expensive tool is <strong>$3</strong>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="num">66</div><div class="label">Tools</div></div>
+    <div class="stat"><div class="num">9</div><div class="label">Categories</div></div>
+    <div class="stat"><div class="num">50</div><div class="label">Sats minimum</div></div>
+    <div class="stat"><div class="num">6</div><div class="label">Bundles</div></div>
+  </div>
+</section>
+
+<div class="search-wrap">
+  <input type="text" class="search-bar" id="search" placeholder="Search 66 tools... (e.g. docker, regex, seo)">
+</div>
+
+<div class="cat-nav" id="catNav">
+  <button class="cat-btn active" data-cat="all">All Tools</button>
+  <button class="cat-btn" data-cat="code">💻 Code</button>
+  <button class="cat-btn" data-cat="ux">🎨 UX & Design</button>
+  <button class="cat-btn" data-cat="devops">🔧 DevOps</button>
+  <button class="cat-btn" data-cat="data">📊 Data & APIs</button>
+  <button class="cat-btn" data-cat="security">🔒 Security</button>
+  <button class="cat-btn" data-cat="content">✍️ Content & SEO</button>
+  <button class="cat-btn" data-cat="business">📋 Business</button>
+  <button class="cat-btn" data-cat="marketing">📱 Marketing</button>
+  <button class="cat-btn" data-cat="bundles">🔗 Bundles</button>
+</div>
+
+<div id="services"></div>
+
+<!-- Global South -->
+<section class="global-south" id="global-south">
+  <h2>🌍 Built for the Global South</h2>
+  <p>Most premium developer tools require credit cards, USD subscriptions, and assume you're in San Francisco. We don't. Lightning micropayments mean a developer in Nairobi, Lagos, or Manila pays fractions of a cent for tools that would cost $99/month elsewhere.</p>
+  <div class="gs-grid">
+    <div class="gs-card">
+      <h4>⚡ No Bank Account Needed</h4>
+      <p>Pay with Bitcoin Lightning from any wallet. No credit card, no PayPal, no KYC. Just sats.</p>
+    </div>
+    <div class="gs-card">
+      <h4>💰 True Micropayments</h4>
+      <p>50 sats ≈ $0.05. Use one tool for a nickel instead of paying $99/month for a suite you barely touch.</p>
+    </div>
+    <div class="gs-card">
+      <h4>🌐 Works Everywhere</h4>
+      <p>No geo-restrictions. No "not available in your country." If you have internet and a Lightning wallet, you're in.</p>
+    </div>
+    <div class="gs-card">
+      <h4>📱 Mobile First</h4>
+      <p>Fully responsive. Use from your phone on a 2G connection. Every byte counts when bandwidth is expensive.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/">🏠 Home</a>
+    <a href="/devtools">🛠 DevTools</a>
+    <a href="/nosubs">🚫 No Subscriptions</a>
+    <a href="/deploy">🚀 Deploy</a>
+    <a href="/market">🏪 Marketplace</a>
+  </div>
+  <p>The Ark AI — Premium tools for every developer on Earth. Powered by Bitcoin Lightning ⚡</p>
+</footer>
+
+<script>
+const SAT_USD = 0.00099;
+const services = {
+  code: {
+    icon: '💻', title: 'Code & Development',
+    items: [
+      { name: 'Code Review', desc: 'Get expert AI review of your code with actionable suggestions for improvement.', sats: 500, task: 'code_review' },
+      { name: 'Bug Finder', desc: 'Detect bugs, logic errors, and edge cases in your code automatically.', sats: 500, task: 'bug_finder' },
+      { name: 'Code Explainer', desc: 'Understand any code snippet with a clear, line-by-line explanation.', sats: 200, task: 'code_explainer' },
+      { name: 'Regex Generator', desc: 'Describe what you need in English, get a tested regular expression.', sats: 100, task: 'regex_generator' },
+      { name: 'SQL Optimizer', desc: 'Optimize slow SQL queries for better performance and readability.', sats: 300, task: 'sql_optimizer' },
+      { name: 'SQL from English', desc: 'Describe your data need in plain English, get the SQL query.', sats: 200, task: 'sql_from_english' },
+      { name: 'Documentation Gen', desc: 'Auto-generate comprehensive documentation from your codebase.', sats: 1000, task: 'documentation_gen' },
+      { name: 'Commit Message', desc: 'Generate clear, conventional commit messages from your diff.', sats: 50, task: 'commit_message' },
+      { name: 'Unit Test Gen', desc: 'Generate thorough unit tests for your functions and methods.', sats: 500, task: 'unit_test_gen' },
+      { name: 'Code Generation', desc: 'Describe functionality in English, get production-ready code.', sats: 500, task: 'code_generation' },
+      { name: 'HTML/CSS Generator', desc: 'Describe a UI component or page, get clean HTML & CSS.', sats: 1000, task: 'html_css_generator' },
+      { name: 'Tutorial Generator', desc: 'Create step-by-step tutorials for any programming topic.', sats: 2000, task: 'tutorial_generator' },
+      { name: 'Performance Audit', desc: 'Analyze code for performance bottlenecks with fix recommendations.', sats: 1000, task: 'performance_audit' },
+    ]
+  },
+  ux: {
+    icon: '🎨', title: 'UX & Design',
+    items: [
+      { name: 'Wireframe Generator', desc: 'Generate text-based wireframes and layout specs from descriptions.', sats: 1000, task: 'wireframe_generator' },
+      { name: 'User Flow Diagrams', desc: 'Map out complete user journeys and interaction flows.', sats: 1000, task: 'user_flow_diagrams' },
+      { name: 'Accessibility Audit', desc: 'Check your HTML for WCAG compliance with detailed fix suggestions.', sats: 3000, task: 'accessibility_audit' },
+      { name: 'Color Palette', desc: 'Generate harmonious color palettes for your project with contrast ratios.', sats: 200, task: 'color_palette' },
+    ]
+  },
+  devops: {
+    icon: '🔧', title: 'DevOps & Cloud',
+    items: [
+      { name: 'Dockerfile Gen', desc: 'Generate optimized, multi-stage Dockerfiles for any stack.', sats: 300, task: 'dockerfile_gen' },
+      { name: 'CI/CD Config', desc: 'Generate GitHub Actions, GitLab CI, or other pipeline configs.', sats: 500, task: 'cicd_config' },
+      { name: 'Nginx Config', desc: 'Generate production-ready Nginx configurations with SSL and caching.', sats: 200, task: 'nginx_config' },
+      { name: 'Docker Compose', desc: 'Create multi-service Docker Compose files for your stack.', sats: 500, task: 'docker_compose' },
+      { name: 'Terraform Gen', desc: 'Generate Terraform infrastructure-as-code for major cloud providers.', sats: 2000, task: 'terraform_gen' },
+      { name: 'K8s Manifests', desc: 'Generate Kubernetes deployment manifests, services, and ingress configs.', sats: 2000, task: 'k8s_manifests' },
+      { name: 'Cron Expression', desc: 'Describe a schedule in English, get the correct cron expression.', sats: 50, task: 'cron_expression' },
+    ]
+  },
+  data: {
+    icon: '📊', title: 'Data & APIs',
+    items: [
+      { name: 'JSON/CSV Convert', desc: 'Convert between JSON and CSV formats instantly.', sats: 100, task: 'json_csv_convert' },
+      { name: 'Data Cleaner', desc: 'Clean and normalize messy datasets automatically.', sats: 300, task: 'data_cleaner' },
+      { name: 'CSV Cleaner', desc: 'Fix formatting issues, duplicates, and inconsistencies in CSV files.', sats: 300, task: 'csv_cleaner' },
+      { name: 'API Response Parser', desc: 'Parse and extract specific fields from complex API responses.', sats: 200, task: 'api_response_parser' },
+      { name: 'JSON Fixer', desc: 'Fix malformed JSON — missing quotes, trailing commas, encoding issues.', sats: 100, task: 'json_fixer' },
+      { name: 'PDF Extract', desc: 'Extract structured text and data from PDF documents.', sats: 200, task: 'pdf_extract' },
+      { name: 'Schema Design', desc: 'Design optimal database schemas from your requirements.', sats: 1500, task: 'schema_design' },
+      { name: 'API Design', desc: 'Design RESTful API endpoints with OpenAPI/Swagger specs.', sats: 2000, task: 'api_design' },
+    ]
+  },
+  security: {
+    icon: '🔒', title: 'Security',
+    items: [
+      { name: 'Security Scan', desc: 'Scan code for common vulnerabilities — XSS, SQL injection, CSRF, and more.', sats: 500, task: 'security_scan' },
+      { name: 'Secret Scanner', desc: 'Detect accidentally committed API keys, tokens, and credentials.', sats: 300, task: 'secret_scanner' },
+      { name: 'Accessibility Audit', desc: 'Full WCAG accessibility audit with severity ratings and fixes.', sats: 3000, task: 'accessibility_audit_security' },
+    ]
+  },
+  content: {
+    icon: '✍️', title: 'Content & SEO',
+    items: [
+      { name: 'Summarize', desc: 'Condense any text into a clear, concise summary.', sats: 50, task: 'summarize' },
+      { name: 'Translate', desc: 'Translate text between languages with context-aware accuracy.', sats: 50, task: 'translate' },
+      { name: 'Content Write', desc: 'Generate well-structured content on any topic.', sats: 1000, task: 'content_write' },
+      { name: 'Tech Blog', desc: 'Write in-depth technical blog posts with code examples.', sats: 2000, task: 'tech_blog' },
+      { name: 'README Gen', desc: 'Generate professional README files for your repositories.', sats: 500, task: 'readme_gen' },
+      { name: 'API Docs', desc: 'Generate comprehensive API documentation from endpoints or code.', sats: 1000, task: 'api_docs' },
+      { name: 'SEO Analysis', desc: 'Analyze any page for SEO issues with actionable recommendations.', sats: 1000, task: 'seo_analysis' },
+      { name: 'Keyword Research', desc: 'Discover high-value keywords for your niche with search intent analysis.', sats: 1000, task: 'keyword_research' },
+      { name: 'SEO Meta', desc: 'Generate optimized title tags and meta descriptions.', sats: 200, task: 'seo_meta' },
+      { name: 'Landing Page Copy', desc: 'Write conversion-focused landing page copy that sells.', sats: 1500, task: 'landing_page_copy' },
+    ]
+  },
+  business: {
+    icon: '📋', title: 'Business & Legal',
+    items: [
+      { name: 'Privacy Policy', desc: 'Generate a comprehensive privacy policy for your app or website.', sats: 2000, task: 'privacy_policy' },
+      { name: 'Terms of Service', desc: 'Generate terms of service tailored to your product.', sats: 2000, task: 'terms_of_service' },
+      { name: 'SOW Generator', desc: 'Create detailed statements of work for client projects.', sats: 3000, task: 'sow_generator' },
+      { name: 'Contract Generator', desc: 'Generate freelance contracts and service agreements.', sats: 3000, task: 'contract_generator' },
+      { name: 'Invoice Gen', desc: 'Create professional invoices from project details.', sats: 200, task: 'invoice_gen' },
+      { name: 'Pitch Deck', desc: 'Generate compelling pitch deck content and structure.', sats: 3000, task: 'pitch_deck' },
+      { name: 'Meeting Summary', desc: 'Summarize meeting notes into clear action items and decisions.', sats: 500, task: 'meeting_summary' },
+      { name: 'Competitor Analysis', desc: 'Analyze competitors with strengths, weaknesses, and opportunities.', sats: 2000, task: 'competitor_analysis' },
+      { name: 'Ad Copy', desc: 'Write high-converting ad copy for any platform.', sats: 500, task: 'ad_copy' },
+    ]
+  },
+  marketing: {
+    icon: '📱', title: 'Marketing & Social',
+    items: [
+      { name: 'Social Posts', desc: 'Generate engaging social media posts for any platform.', sats: 200, task: 'social_posts' },
+      { name: 'Hashtag Gen', desc: 'Research and generate relevant hashtags for maximum reach.', sats: 100, task: 'hashtag_gen' },
+      { name: 'Email Subject Lines', desc: 'Generate A/B testable email subject lines that get opens.', sats: 200, task: 'email_subject_lines' },
+      { name: 'Rewrite', desc: 'Rewrite any text with improved clarity, tone, or style.', sats: 200, task: 'rewrite' },
+      { name: 'Tone Adjust', desc: 'Adjust text tone — formal, casual, persuasive, technical, friendly.', sats: 200, task: 'tone_adjust' },
+    ]
+  }
+};
+
+const bundles = [
+  { name: 'Full Code Audit', sats: 1200, chain: ['Code Review', 'Bug Finder', 'Performance Audit'], individual: 2000 },
+  { name: 'Launch Pack', sats: 1500, chain: ['README Gen', 'SEO Meta', 'Social Posts', 'Landing Page Copy'], individual: 2400 },
+  { name: 'Startup Kit', sats: 5000, chain: ['Privacy Policy', 'Terms of Service', 'Pitch Deck', 'Landing Page Copy'], individual: 8500 },
+  { name: 'Code Ship', sats: 2000, chain: ['Code Review', 'Unit Test Gen', 'Dockerfile Gen', 'CI/CD Config'], individual: 1800 },
+  { name: 'Content Machine', sats: 2200, chain: ['Tech Blog', 'SEO Analysis', 'Social Posts', 'Hashtag Gen'], individual: 3300 },
+  { name: 'API Launch', sats: 1800, chain: ['API Design', 'API Docs', 'Security Scan'], individual: 3500 },
+];
+
+function usd(sats) { return '$' + (sats * SAT_USD).toFixed(2); }
+function formatSats(n) { return n.toLocaleString(); }
+
+function renderServices() {
+  const container = document.getElementById('services');
+  let html = '';
+  for (const [cat, data] of Object.entries(services)) {
+    html += `<section class="section" data-cat="${cat}">
+      <div class="section-head">
+        <h2>${data.icon} ${data.title}</h2>
+        <span class="count">${data.items.length} tools</span>
+      </div>
+      <div class="grid">`;
+    for (const s of data.items) {
+      html += `<div class="card" data-name="${s.name.toLowerCase()}" data-task="${s.task}">
+        <div class="card-top">
+          <h3>${s.name}</h3>
+          <div class="price"><div class="sats">⚡ ${formatSats(s.sats)}</div><div class="usd">~${usd(s.sats)}</div></div>
+        </div>
+        <p class="desc">${s.desc}</p>
+        <button class="try-btn" onclick="toggleForm(this)">Try It →</button>
+        <div class="card-form">
+          <textarea placeholder="Paste your code, text, or describe what you need..."></textarea>
+          <button class="submit-btn" onclick="submitTask(this, '${s.task}', ${s.sats})">⚡ Pay ${formatSats(s.sats)} sats & Run</button>
+          <div class="card-result"></div>
+        </div>
+      </div>`;
+    }
+    html += '</div></section>';
+  }
+
+  // Bundles
+  html += `<section class="section" data-cat="bundles">
+    <div class="section-head">
+      <h2>🔗 Workflow Bundles</h2>
+      <span class="count">6 bundles — chain tools together & save</span>
+    </div>
+    <div class="bundle-grid">`;
+  for (const b of bundles) {
+    const saved = b.individual - b.sats;
+    const pct = Math.round((saved / b.individual) * 100);
+    html += `<div class="bundle" data-name="${b.name.toLowerCase()}">
+      <h3>${b.name}</h3>
+      <div class="chain">${b.chain.map(c => `<span>${c}</span>`).join('<span class="arrow">→</span>')}</div>
+      <div class="bundle-price">
+        <div><div class="sats">⚡ ${formatSats(b.sats)} sats</div><div class="usd" style="font-size:0.75rem;color:var(--text2)">~${usd(b.sats)}</div></div>
+        <span class="savings-tag">Save ${pct > 0 ? pct : ''}% vs individual</span>
+      </div>
+    </div>`;
+  }
+  html += '</div></section>';
+  container.innerHTML = html;
+}
+
+function toggleForm(btn) {
+  const form = btn.nextElementSibling;
+  form.classList.toggle('open');
+  btn.textContent = form.classList.contains('open') ? '✕ Close' : 'Try It →';
+}
+
+async function submitTask(btn, task, sats) {
+  const form = btn.parentElement;
+  const input = form.querySelector('textarea').value.trim();
+  if (!input) { alert('Please provide some input.'); return; }
+  const result = form.querySelector('.card-result');
+  btn.disabled = true;
+  btn.textContent = '⏳ Creating invoice...';
+  result.classList.add('show');
+  result.innerHTML = 'Connecting to Lightning...';
+  try {
+    const res = await fetch('/task', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ task, input, sats })
+    });
+    const data = await res.json();
+    if (data.invoice) {
+      result.innerHTML = `<div class="qr-area">
+        <p style="margin-bottom:0.5rem;color:var(--accent)">⚡ Scan to pay ${formatSats(sats)} sats</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(data.invoice)}" alt="Lightning Invoice QR">
+        <p style="margin-top:0.5rem;font-size:0.7rem;word-break:break-all;color:var(--text2)">${data.invoice.substring(0, 40)}...</p>
+      </div>`;
+      pollResult(data.taskId, result, btn);
+    } else if (data.error) {
+      result.innerHTML = `<span style="color:#f87171">Error: ${data.error}</span>`;
+      btn.disabled = false;
+      btn.textContent = `⚡ Pay ${formatSats(sats)} sats & Run`;
+    }
+  } catch (e) {
+    result.innerHTML = `<span style="color:#f87171">Connection error. Try again.</span>`;
+    btn.disabled = false;
+    btn.textContent = `⚡ Pay ${formatSats(sats)} sats & Run`;
+  }
+}
+
+async function pollResult(taskId, resultEl, btn) {
+  let attempts = 0;
+  const poll = setInterval(async () => {
+    attempts++;
+    if (attempts > 120) { clearInterval(poll); resultEl.innerHTML += '<p style="color:var(--text2)">Timeout. Check back later.</p>'; return; }
+    try {
+      const res = await fetch(`/task/${taskId}/status`);
+      const data = await res.json();
+      if (data.status === 'complete') {
+        clearInterval(poll);
+        resultEl.innerHTML = `<div style="white-space:pre-wrap;font-family:monospace;font-size:0.8rem;max-height:300px;overflow:auto">${data.result}</div>`;
+        btn.disabled = false;
+        btn.textContent = '✓ Done — Run Again?';
+      } else if (data.status === 'paid') {
+        resultEl.innerHTML = '<p style="color:var(--green)">⚡ Payment received! Processing...</p>';
+      }
+    } catch(e) {}
+  }, 3000);
+}
+
+// Search
+document.getElementById('search').addEventListener('input', function() {
+  const q = this.value.toLowerCase();
+  document.querySelectorAll('.card, .bundle').forEach(c => {
+    c.classList.toggle('hidden', !c.dataset.name.includes(q));
+  });
+  document.querySelectorAll('.section').forEach(s => {
+    const visible = s.querySelectorAll('.card:not(.hidden), .bundle:not(.hidden)').length;
+    s.classList.toggle('hidden', visible === 0);
+  });
+  // reset cat buttons
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === 'all'));
+});
+
+// Category filter
+document.getElementById('catNav').addEventListener('click', function(e) {
+  if (!e.target.classList.contains('cat-btn')) return;
+  const cat = e.target.dataset.cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById('search').value = '';
+  document.querySelectorAll('.card, .bundle').forEach(c => c.classList.remove('hidden'));
+  document.querySelectorAll('.section').forEach(s => {
+    if (cat === 'all') { s.classList.remove('hidden'); }
+    else { s.classList.toggle('hidden', s.dataset.cat !== cat); }
+  });
+  const gs = document.getElementById('global-south');
+  gs.style.display = (cat === 'all') ? '' : 'none';
+});
+
+renderServices();
+</script>
+</body>
+</html>

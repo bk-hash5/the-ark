@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ark AI 👽 — AI that works for sats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a12;--bg2:#12121f;--bg3:#1a1a2e;
+  --purple:#7c3aed;--purple-glow:#a855f7;
+  --green:#22c55e;--green-dim:#16a34a;
+  --cyan:#06b6d4;--text:#e2e8f0;--text-dim:#94a3b8;
+  --border:#1e1e3a;--radius:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--purple-glow);text-decoration:none}
+a:hover{text-decoration:underline}
+code,.code{font-family:'JetBrains Mono',monospace}
+
+/* Layout */
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:100px 0}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,18,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:16px 0}
+nav .container{display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.25rem;font-weight:800;letter-spacing:-.02em}
+.logo span{color:var(--green)}
+nav ul{display:flex;gap:28px;list-style:none}
+nav ul a{color:var(--text-dim);font-size:.875rem;font-weight:500;transition:color .2s}
+nav ul a:hover{color:var(--text);text-decoration:none}
+
+/* Hero */
+.hero{padding:180px 0 120px;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(124,58,237,.12) 0%,transparent 70%);pointer-events:none}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:20px}
+.hero h1 .accent{background:linear-gradient(135deg,var(--green),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero .tagline{font-size:1.35rem;color:var(--text-dim);margin-bottom:12px}
+.hero .sub{color:var(--text-dim);font-size:.95rem;margin-bottom:40px;max-width:540px;margin-left:auto;margin-right:auto}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:999px;padding:8px 20px;font-size:.8rem;color:var(--text-dim);margin-bottom:28px}
+.pill .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:var(--radius);font-weight:600;font-size:.95rem;border:none;cursor:pointer;transition:all .2s}
+.btn-primary{background:linear-gradient(135deg,var(--purple),var(--purple-glow));color:#fff;box-shadow:0 4px 24px rgba(124,58,237,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(124,58,237,.4);text-decoration:none}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--purple);text-decoration:none}
+.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* How it works */
+.section-label{text-transform:uppercase;font-size:.75rem;font-weight:600;letter-spacing:.1em;color:var(--purple-glow);margin-bottom:12px}
+.section-title{font-size:2rem;font-weight:700;margin-bottom:48px;letter-spacing:-.02em}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px}
+.step{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:36px 28px;position:relative;transition:border-color .3s}
+.step:hover{border-color:var(--purple)}
+.step-num{font-size:3rem;font-weight:800;background:linear-gradient(135deg,var(--purple),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:16px}
+.step h3{font-size:1.1rem;font-weight:600;margin-bottom:8px}
+.step p{color:var(--text-dim);font-size:.9rem}
+
+/* Services */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.service-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px;display:flex;justify-content:space-between;align-items:center;transition:all .3s}
+.service-card:hover{border-color:var(--green);transform:translateY(-2px)}
+.service-card h3{font-size:1rem;font-weight:600;margin-bottom:4px}
+.service-card p{color:var(--text-dim);font-size:.8rem}
+.sats{font-size:1.1rem;font-weight:700;color:var(--green);white-space:nowrap}
+
+/* API Docs */
+.code-block{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;overflow-x:auto;font-size:.82rem;line-height:1.7;margin-bottom:20px;position:relative}
+.code-block .label{position:absolute;top:12px;right:16px;font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);font-family:'Inter',sans-serif}
+.code-block pre{margin:0;white-space:pre;color:var(--text-dim)}
+.code-block .kw{color:var(--purple-glow)}
+.code-block .str{color:var(--green)}
+.code-block .comment{color:#475569}
+.api-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:768px){.api-grid{grid-template-columns:1fr}}
+
+/* Try It */
+.try-box{max-width:600px;margin:0 auto;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:36px}
+.try-box label{display:block;font-size:.85rem;font-weight:500;margin-bottom:8px;color:var(--text-dim)}
+.try-box select,.try-box textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;color:var(--text);font-size:.9rem;font-family:inherit;margin-bottom:20px;resize:vertical;transition:border-color .2s}
+.try-box select:focus,.try-box textarea:focus{outline:none;border-color:var(--purple)}
+.try-box textarea{min-height:100px}
+.try-box .btn{width:100%}
+#result{margin-top:24px;text-align:center}
+#result canvas{border-radius:8px;max-width:240px}
+#result .invoice-text{font-size:.7rem;color:var(--text-dim);word-break:break-all;margin-top:12px;max-width:100%;cursor:pointer}
+#result .amount-badge{display:inline-block;background:var(--bg3);border:1px solid var(--green);color:var(--green);border-radius:999px;padding:6px 18px;font-weight:600;margin-bottom:16px}
+.status-msg{padding:16px;border-radius:8px;margin-top:16px;font-size:.85rem}
+.status-msg.error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#f87171}
+.status-msg.info{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.3);color:var(--purple-glow)}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--text-dim);font-size:.85rem}
+
+/* Responsive nav */
+@media(max-width:600px){
+  nav ul{display:none}
+  section{padding:72px 0}
+  .hero{padding:140px 0 80px}
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:3px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">👽 The Ark <span>AI</span></div>
+    <ul>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#api">API Docs</a></li>
+      <li><a href="#try">Try It</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="pill"><span class="dot"></span> Live on Lightning Network</div>
+    <h1>👽 The Ark <span class="accent">AI</span></h1>
+    <p class="tagline">AI that works for sats ⚡</p>
+    <p class="sub">No signup. No accounts. No KYC. Just send a request, pay a Lightning invoice, and get results instantly.</p>
+    <div class="hero-buttons">
+      <a href="#try" class="btn btn-primary">Try It Now ⚡</a>
+      <a href="#api" class="btn btn-outline">Read the Docs</a>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="container">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Three steps. That's it.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Send a Task</h3>
+        <p>POST your request to our API — summarize, translate, generate code, and more.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Pay the Invoice ⚡</h3>
+        <p>You'll get a Lightning invoice. Scan it with any wallet — payment confirms in seconds.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Get Results 👽</h3>
+        <p>Once paid, poll the status endpoint. Your AI-generated result is ready instantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-label">Services & Pricing</div>
+    <h2 class="section-title">Pay only for what you use</h2>
+    <div class="services-grid">
+      <div class="service-card"><div><h3>📝 Summarize</h3><p>Condense long text into key points</p></div><div class="sats">50 sats</div></div>
+      <div class="service-card"><div><h3>🌐 Translate</h3><p>Translate between any languages</p></div><div class="sats">50 sats</div></div>
+      <div class="service-card"><div><h3>💻 Code Generation</h3><p>Generate code from natural language</p></div><div class="sats">500 sats</div></div>
+      <div class="service-card"><div><h3>🔍 Research</h3><p>Deep research on any topic</p></div><div class="sats">2,000 sats</div></div>
+      <div class="service-card"><div><h3>✍️ Content Writing</h3><p>Articles, copy, creative writing</p></div><div class="sats">1,000 sats</div></div>
+      <div class="service-card"><div><h3>📊 Data Analysis</h3><p>Analyze and interpret your data</p></div><div class="sats">500 sats</div></div>
+      <div class="service-card"><div><h3>🖼️ Image Description</h3><p>Detailed descriptions of images</p></div><div class="sats">200 sats</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="api">
+  <div class="container">
+    <div class="section-label">API Documentation</div>
+    <h2 class="section-title">Simple REST API</h2>
+    <div class="api-grid">
+      <div>
+        <h3 style="font-size:.95rem;margin-bottom:12px;color:var(--text-dim)">Standard Flow</h3>
+        <div class="code-block code"><span class="label">Request</span><pre><span class="kw">POST</span> /task
+Content-Type: application/json
+
+{
+  <span class="str">"task"</span>: <span class="str">"summarize"</span>,
+  <span class="str">"input"</span>: <span class="str">"Your text here"</span>
+}</pre></div>
+        <div class="code-block code"><span class="label">Response</span><pre>{
+  <span class="str">"payment_hash"</span>: <span class="str">"abc123..."</span>,
+  <span class="str">"invoice"</span>: <span class="str">"lnbc500n1..."</span>,
+  <span class="str">"amount_sats"</span>: <span class="kw">50</span>,
+  <span class="str">"status_url"</span>: <span class="str">"/task/{hash}/status"</span>
+}</pre></div>
+        <div class="code-block code"><span class="label">Check Status</span><pre><span class="kw">GET</span> /task/{hash}/status
+
+<span class="comment">→ Returns result after payment</span></pre></div>
+      </div>
+      <div>
+        <h3 style="font-size:.95rem;margin-bottom:12px;color:var(--text-dim)">L402 Flow</h3>
+        <div class="code-block code"><span class="label">Step 1</span><pre><span class="kw">POST</span> /l402/task
+Content-Type: application/json
+
+{
+  <span class="str">"task"</span>: <span class="str">"summarize"</span>,
+  <span class="str">"input"</span>: <span class="str">"Your text here"</span>
+}
+
+<span class="comment">→ 402 Payment Required</span>
+<span class="comment">→ WWW-Authenticate: L402 invoice="lnbc...", macaroon="..."</span></pre></div>
+        <div class="code-block code"><span class="label">Step 2</span><pre><span class="comment">// Pay the invoice, then retry:</span>
+
+<span class="kw">POST</span> /l402/task
+Authorization: L402 {macaroon}:{preimage}
+
+<span class="comment">→ 200 OK + result</span></pre></div>
+        <p style="color:var(--text-dim);font-size:.85rem;margin-top:16px">The L402 protocol enables machine-to-machine payments. Your client pays the Lightning invoice and uses the proof-of-payment to authenticate — no API keys needed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="try" style="background:var(--bg2)">
+  <div class="container" style="text-align:center">
+    <div class="section-label">Try It</div>
+    <h2 class="section-title">Send a request right now ⚡</h2>
+    <div class="try-box" style="text-align:left">
+      <label for="task-type">Task Type</label>
+      <select id="task-type">
+        <option value="summarize">📝 Summarize — 50 sats</option>
+        <option value="translate">🌐 Translate — 50 sats</option>
+        <option value="code_generation">💻 Code Generation — 500 sats</option>
+        <option value="research">🔍 Research — 2,000 sats</option>
+        <option value="content_writing">✍️ Content Writing — 1,000 sats</option>
+        <option value="data_analysis">📊 Data Analysis — 500 sats</option>
+        <option value="image_description">🖼️ Image Description — 200 sats</option>
+      </select>
+      <label for="task-input">Input</label>
+      <textarea id="task-input" placeholder="Enter your text here..."></textarea>
+      <button class="btn btn-primary" id="submit-btn" onclick="submitTask()">Submit Task ⚡</button>
+      <div id="result"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>⚡ Powered by Lightning Network &nbsp;·&nbsp; 👽 The Ark AI</p>
+    <p style="margin-top:8px;font-size:.75rem">No accounts. No KYC. Just sats and AI.</p>
+  </div>
+</footer>
+
+<script>
+// Minimal QR Code generator (QR Code in pure JS — simplified for demo)
+// Using a lightweight approach: we'll create QR via an API fallback or inline lib
+// For self-contained: bundling a tiny QR encoder
+
+const QR=(function(){
+  // Alphanumeric mode QR is complex; for demo we use a canvas-based approach
+  // with external API as QR source (lightweight, no lib needed)
+  return{
+    toCanvas:function(canvas,text,size){
+      // Use a 1x1 approach: render QR via embedded generator
+      // For true offline, we'd bundle qrcode.js; for now, use image from API
+      const img=new Image();
+      img.crossOrigin='anonymous';
+      img.onload=function(){
+        canvas.width=size;canvas.height=size;
+        const ctx=canvas.getContext('2d');
+        ctx.fillStyle='#ffffff';ctx.fillRect(0,0,size,size);
+        ctx.drawImage(img,0,0,size,size);
+      };
+      img.onerror=function(){
+        canvas.width=size;canvas.height=size;
+        const ctx=canvas.getContext('2d');
+        ctx.fillStyle='#1a1a2e';ctx.fillRect(0,0,size,size);
+        ctx.fillStyle='#94a3b8';ctx.font='14px Inter,sans-serif';ctx.textAlign='center';
+        ctx.fillText('QR generation failed',size/2,size/2-8);
+        ctx.fillText('Copy invoice below',size/2,size/2+12);
+      };
+      img.src='https://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&data='+encodeURIComponent(text);
+    }
+  };
+})();
+
+async function submitTask(){
+  const task=document.getElementById('task-type').value;
+  const input=document.getElementById('task-input').value.trim();
+  const result=document.getElementById('result');
+  const btn=document.getElementById('submit-btn');
+
+  if(!input){
+    result.innerHTML='<div class="status-msg error">Please enter some text.</div>';
+    return;
+  }
+
+  btn.disabled=true;btn.textContent='Submitting...';
+  result.innerHTML='<div class="status-msg info">Sending request...</div>';
+
+  try{
+    const res=await fetch('/task',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({task,input})
+    });
+    const data=await res.json();
+
+    if(data.invoice){
+      const prices={summarize:50,translate:50,code_generation:500,research:2000,content_writing:1000,data_analysis:500,image_description:200};
+      const amt=data.amount_sats||prices[task]||'?';
+      result.innerHTML=
+        '<div class="amount-badge">⚡ '+amt+' sats</div>'+
+        '<div><canvas id="qr-canvas"></canvas></div>'+
+        '<div class="invoice-text" onclick="copyInvoice()" title="Click to copy">'+data.invoice+'</div>'+
+        '<div class="status-msg info" style="margin-top:16px">Scan with any Lightning wallet to pay.<br>Then check: <code>GET '+data.status_url+'</code></div>';
+      QR.toCanvas(document.getElementById('qr-canvas'),data.invoice,240);
+    }else{
+      result.innerHTML='<div class="status-msg error">Unexpected response. Try again.</div>';
+    }
+  }catch(e){
+    result.innerHTML='<div class="status-msg error">Could not reach the API. Make sure the service is running.</div>';
+  }
+  btn.disabled=false;btn.textContent='Submit Task ⚡';
+}
+
+function copyInvoice(){
+  const t=document.querySelector('.invoice-text');
+  if(t){navigator.clipboard.writeText(t.textContent).then(()=>{t.style.color='var(--green)';setTimeout(()=>t.style.color='',1500)});}
+}
+</script>
+</body>
+</html>
