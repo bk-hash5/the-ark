@@ -22,6 +22,12 @@
   - [ ] Test full payment flow end-to-end if any issues detected
 - If anything is down, alert Navigator immediately
 
+## Git Commit (every heartbeat)
+- [ ] Check for uncommitted changes: `cd /Users/lyn/.openclaw/workspace && git status`
+- [ ] If changes exist, commit with descriptive message and push
+- [ ] Verify no secrets before committing: grep for passwords/keys in staged files
+- [ ] NEVER commit MEMORY.md, memory/, or files with secrets
+
 ## Security Checks (rotate, 1-2x daily)
 - [ ] Check fail2ban status and banned IPs
 - [ ] Review nginx access logs for suspicious patterns
