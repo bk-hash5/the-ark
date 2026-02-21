@@ -1,69 +1,70 @@
-# 🚀 The Ark AI — 90-Day Africa Sprint
+# The Ark — 90-Day Sprint 🛸⚡
 
-**Start Date:** February 21, 2026  
-**End Date:** May 22, 2026  
-**Current Day:** Day 1
-
----
-
-## Phases
-
-### Phase 1: BUILD (Days 1–30) — Feb 21 – Mar 22
-- Launch Africa landing page
-- Set up social media presence (Twitter/X, Telegram, Nostr)
-- Create initial marketing content
-- Set up analytics/tracking
-- Outreach to 10 African Bitcoin/tech communities
-- Target: 100 first users
-
-### Phase 2: LAUNCH (Days 31–60) — Mar 23 – Apr 21
-- Paid promotions on African tech Twitter
-- Partnerships with African Bitcoin meetups
-- Content marketing (blog posts, tutorials)
-- Telegram community building
-- Target: 500 users, 50k sats revenue
-
-### Phase 3: SCALE (Days 61–90) — Apr 22 – May 22
-- Referral program
-- Local language support expansion
-- Ambassador program in target countries
-- Optimize conversion funnel
-- Target: 2,000 users, 500k sats revenue
+**Brand:** The Ark
+**Domain:** thenode.it.com
+**Start:** February 21, 2026
+**End:** May 22, 2026
 
 ---
 
-## Weekly Metrics
+## Phase 1: Foundation (Feb 21 — Mar 14) — Weeks 1-3
 
-| Week | Dates | Users | Revenue (sats) | Site Traffic | X Followers | Telegram Members |
-|------|-------|-------|-----------------|-------------|-------------|------------------|
-| 1 | Feb 21–27 | — | — | — | — | — |
-| 2 | Feb 28–Mar 6 | — | — | — | — | — |
-| 3 | Mar 7–13 | — | — | — | — | — |
-| 4 | Mar 14–20 | — | — | — | — | — |
-| 5 | Mar 21–27 | — | — | — | — | — |
-| 6 | Mar 28–Apr 3 | — | — | — | — | — |
-| 7 | Apr 4–10 | — | — | — | — | — |
-| 8 | Apr 11–17 | — | — | — | — | — |
-| 9 | Apr 18–24 | — | — | — | — | — |
-| 10 | Apr 25–May 1 | — | — | — | — | — |
-| 11 | May 2–8 | — | — | — | — | — |
-| 12 | May 9–15 | — | — | — | — | — |
-| 13 | May 16–22 | — | — | — | — | — |
+- [x] Rebrand from TheNode to The Ark across all touchpoints
+- [x] Launch Africa landing page (thenode.it.com/africa)
+- [x] Create Africa marketing campaign content
+- [x] Post rebrand announcement on Nostr
+- [ ] Update Nostr bot display name to "The Ark"
+- [ ] Set up social accounts (Twitter/X, Telegram channel)
+- [ ] Create 30-second demo video/GIF for social sharing
+- [ ] Identify and join 10 African tech communities (Telegram, Discord, WhatsApp)
+
+## Phase 2: Distribution (Mar 15 — Apr 11) — Weeks 4-6
+
+- [ ] Begin Twitter/X campaign (3-4 posts/week from campaign content)
+- [ ] Launch Telegram channel with educational content
+- [ ] Nostr engagement — reply to Bitcoin Africa conversations
+- [ ] Partner with 2-3 African Bitcoin/tech influencers
+- [ ] Reddit presence in r/bitcoin, r/africa, r/naija, r/kenya
+- [ ] Submit to Bitcoin/Lightning app directories
+- [ ] Guest content on African tech blogs
+- [ ] Lightning wallet tutorial content (Phoenix, WoS, Blink)
+
+## Phase 3: Growth (Apr 12 — May 8) — Weeks 7-9
+
+- [ ] Analyze usage data — which services are most popular in Africa?
+- [ ] Create use-case specific landing pages (students, freelancers, small biz)
+- [ ] Referral mechanism — "share and earn sats"
+- [ ] WhatsApp bot for task submission (huge in Africa)
+- [ ] Local language support (Swahili, Yoruba, pidgin English)
+- [ ] University partnerships — student ambassador program
+- [ ] Lightning onboarding workshops (virtual)
+
+## Phase 4: Scale (May 9 — May 22) — Weeks 10-13
+
+- [ ] Review metrics: tasks completed, unique users, revenue, geographic spread
+- [ ] Double down on what's working, cut what isn't
+- [ ] Plan Phase 2 sprint based on learnings
+- [ ] Expand to additional African markets based on data
+- [ ] Explore USSD/SMS interface for non-smartphone users
+- [ ] Document everything for the next sprint
 
 ---
 
-## Daily Log
+## Key Metrics to Track
 
-### Day 1 — February 21, 2026
-- ✅ Created Africa landing page (thenode.it.com/africa)
-- ✅ Deployed to production server
-- ✅ Created 90-day tracking document
-- ✅ Created marketing content (20 tweets, 10 Telegram posts, 5 Nostr posts)
-- ✅ Posted first Africa-focused Nostr note
-- 🎯 Sprint officially begins
+| Metric | Target (90 days) |
+|--------|------------------|
+| Total tasks completed | 10,000 |
+| Unique users | 1,000 |
+| Revenue (sats) | 5,000,000 |
+| Countries reached | 10+ |
+| Social followers | 500+ |
+| Community members | 200+ |
 
-### Day 2 — February 22, 2026
-- 
+## Principles
 
-### Day 3 — February 23, 2026
-- 
+1. **No gatekeepers** — No signup, no KYC, no credit cards
+2. **Mobile-first** — Everything works on a phone browser
+3. **Micropayments** — Pay per task, not per month
+4. **Africa-first** — But built for everyone
+5. **Bitcoin-native** — Lightning is the payment rail, not a gimmick
