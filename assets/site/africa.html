@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="/the-ark-logo.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ark AI — AI for Africa ⚡🌍</title>
+<meta name="description" content="No subscription. No credit card. No PayPal. Just sats. 98 AI services, pay-per-task via Bitcoin Lightning. Built for African developers, students, freelancers, and creators.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a12;--bg2:#12121f;--bg3:#1a1a2e;
+  --purple:#7c3aed;--purple-glow:#a855f7;
+  --green:#22c55e;--green-dim:#16a34a;
+  --cyan:#06b6d4;--orange:#f59e0b;
+  --text:#e2e8f0;--text-dim:#94a3b8;
+  --border:#1e1e3a;--radius:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--purple-glow);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:80px 0}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,18,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:16px 0}
+nav .container{display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.25rem;font-weight:800;letter-spacing:-.02em}
+.logo span{color:var(--green)}
+nav ul{display:flex;gap:28px;list-style:none}
+nav ul a{color:var(--text-dim);font-size:.875rem;font-weight:500;transition:color .2s}
+nav ul a:hover{color:var(--text);text-decoration:none}
+
+/* Hero */
+.hero{padding:160px 0 100px;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(34,197,94,.1) 0%,rgba(124,58,237,.08) 40%,transparent 70%);pointer-events:none}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:20px}
+.hero h1 .accent{background:linear-gradient(135deg,var(--green),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero .tagline{font-size:clamp(1.1rem,3vw,1.5rem);color:var(--text);margin-bottom:16px;font-weight:600}
+.hero .sub{color:var(--text-dim);font-size:1rem;margin-bottom:40px;max-width:560px;margin-left:auto;margin-right:auto}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:999px;padding:8px 20px;font-size:.8rem;color:var(--text-dim);margin-bottom:28px}
+.pill .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:16px 36px;border-radius:var(--radius);font-weight:600;font-size:1rem;border:none;cursor:pointer;transition:all .2s}
+.btn-primary{background:linear-gradient(135deg,var(--green),var(--cyan));color:#000;box-shadow:0 4px 24px rgba(34,197,94,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(34,197,94,.4);text-decoration:none}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--purple);text-decoration:none}
+.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* Headline banner */
+.headline-banner{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(6,182,212,.08));border:1px solid rgba(34,197,94,.2);border-radius:16px;padding:32px;text-align:center;margin:40px auto 0;max-width:700px}
+.headline-banner h2{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:700;letter-spacing:-.01em;line-height:1.4}
+.headline-banner h2 .strike{text-decoration:line-through;color:var(--text-dim);font-weight:400}
+.headline-banner h2 .glow{color:var(--green)}
+
+/* Section styles */
+.section-label{text-transform:uppercase;font-size:.75rem;font-weight:600;letter-spacing:.1em;color:var(--purple-glow);margin-bottom:12px}
+.section-title{font-size:clamp(1.5rem,4vw,2rem);font-weight:700;margin-bottom:48px;letter-spacing:-.02em}
+
+/* Use cases grid */
+.use-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.use-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:all .3s}
+.use-card:hover{border-color:var(--green);transform:translateY(-2px)}
+.use-card .icon{font-size:2rem;margin-bottom:12px}
+.use-card h3{font-size:1rem;font-weight:600;margin-bottom:6px}
+.use-card p{color:var(--text-dim);font-size:.85rem}
+.use-card .price{color:var(--green);font-weight:700;font-size:.9rem;margin-top:8px}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.step{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px 24px;text-align:center;transition:border-color .3s}
+.step:hover{border-color:var(--purple)}
+.step-num{font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,var(--green),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:12px}
+.step h3{font-size:1rem;font-weight:600;margin-bottom:6px}
+.step p{color:var(--text-dim);font-size:.85rem}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin:48px 0}
+.stat{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center}
+.stat .num{font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--green),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat .label{font-size:.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+
+/* Countries */
+.countries{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:32px 0}
+.country-tag{background:var(--bg3);border:1px solid var(--border);border-radius:999px;padding:8px 20px;font-size:.85rem;color:var(--text-dim)}
+
+/* Compare */
+.compare{max-width:500px;margin:0 auto}
+.compare-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border)}
+.compare-row .item{color:var(--text-dim);font-size:.9rem}
+.compare-row .cost{font-weight:600}
+.compare-row .cost.old{color:#ef4444;text-decoration:line-through}
+.compare-row .cost.new{color:var(--green)}
+
+/* CTA */
+.cta-section{text-align:center;padding:100px 0}
+.cta-box{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(124,58,237,.08));border:1px solid rgba(34,197,94,.2);border-radius:20px;padding:60px 40px;max-width:700px;margin:0 auto}
+.cta-box h2{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;margin-bottom:16px}
+.cta-box p{color:var(--text-dim);font-size:1rem;margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--text-dim);font-size:.85rem}
+
+@media(max-width:600px){
+  nav ul{display:none}
+  section{padding:60px 0}
+  .hero{padding:130px 0 70px}
+  .headline-banner{padding:24px 16px}
+  .cta-box{padding:40px 24px}
+}
+
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:3px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo"><img src="/the-ark-logo.svg" alt="The Ark" style="height:40px;vertical-align:middle;margin-right:8px;"> The Ark <span>AI</span></div>
+    <ul>
+      <li><a href="#use-cases">Use Cases</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="/">Main Site</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="pill"><span class="dot"></span> Now serving Africa ⚡🌍</div>
+    <h1>AI for <span class="accent">Africa</span></h1>
+    <p class="tagline">No Subscription. No Credit Card. No PayPal. Just Sats.</p>
+    <p class="sub">98 AI services you pay for only when you use them. Via Bitcoin Lightning. Works everywhere. No bank account needed. Cheaper than a data bundle.</p>
+    <div class="hero-buttons">
+      <a href="/free" class="btn btn-primary">Try Your First Task Free ⚡</a>
+      <a href="/" class="btn btn-outline">View All Services</a>
+    </div>
+
+    <div class="headline-banner">
+      <h2>
+        <span class="strike">$20/month subscriptions</span><br>
+        <span class="glow">50 sats per task (~$0.02)</span><br>
+        <span style="font-size:.85rem;font-weight:400;color:var(--text-dim)">That's less than the cost of sending an SMS</span>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section style="padding:40px 0">
+  <div class="container">
+    <div class="stats">
+      <div class="stat"><div class="num">98</div><div class="label">AI Services</div></div>
+      <div class="stat"><div class="num">50+</div><div class="label">Sats minimum</div></div>
+      <div class="stat"><div class="num">0</div><div class="label">Subscriptions</div></div>
+      <div class="stat"><div class="num">∞</div><div class="label">Countries supported</div></div>
+    </div>
+    <div class="countries">
+      <span class="country-tag">🇳🇬 Nigeria</span>
+      <span class="country-tag">🇰🇪 Kenya</span>
+      <span class="country-tag">🇿🇦 South Africa</span>
+      <span class="country-tag">🇬🇭 Ghana</span>
+      <span class="country-tag">🇹🇿 Tanzania</span>
+      <span class="country-tag">🌍 + Every other country</span>
+    </div>
+  </div>
+</section>
+
+<!-- Use Cases -->
+<section id="use-cases" style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-label">Built for You</div>
+    <h2 class="section-title">What can you do with The Ark?</h2>
+    <div class="use-grid">
+      <div class="use-card">
+        <div class="icon">💻</div>
+        <h3>Code Help</h3>
+        <p>Debug errors, generate functions, explain code. Perfect for developers and CS students.</p>
+        <div class="price">From 500 sats</div>
+      </div>
+      <div class="use-card">
+        <div class="icon">✍️</div>
+        <h3>Content Writing</h3>
+        <p>Blog posts, social media copy, product descriptions. Create content that converts.</p>
+        <div class="price">From 1,000 sats</div>
+      </div>
+      <div class="use-card">
+        <div class="icon">📄</div>
+        <h3>CV & Resume</h3>
+        <p>Generate professional CVs tailored to the job. Stand out to recruiters.</p>
+        <div class="price">From 2,000 sats</div>
+      </div>
+      <div class="use-card">
+        <div class="icon">🌐</div>
+        <h3>Translation</h3>
+        <p>Translate between any languages — English, French, Swahili, Yoruba, and more.</p>
+        <div class="price">From 50 sats</div>
+      </div>
+      <div class="use-card">
+        <div class="icon">📚</div>
+        <h3>Homework Help</h3>
+        <p>Get explanations, solve problems, understand concepts. Study smarter, not harder.</p>
+        <div class="price">From 50 sats</div>
+      </div>
+      <div class="use-card">
+        <div class="icon">🔧</div>
+        <h3>Freelancer Tools</h3>
+        <p>Proposals, invoices, contracts, client emails. Run your freelance business like a pro.</p>
+        <div class="price">From 1,000 sats</div>
+      </div>
+      <div class="use-card">
+        <div class="icon">🔍</div>
+        <h3>Research</h3>
+        <p>Deep research on any topic. Market analysis, academic summaries, competitor research.</p>
+        <div class="price">From 2,000 sats</div>
+      </div>
+      <div class="use-card">
+        <div class="icon">📊</div>
+        <h3>Data Analysis</h3>
+        <p>Analyze spreadsheets, interpret data, create summaries. Make data-driven decisions.</p>
+        <div class="price">From 500 sats</div>
+      </div>
+      <div class="use-card">
+        <div class="icon">⚖️</div>
+        <h3>Legal & Business</h3>
+        <p>Privacy policies, business plans, NDAs, compliance checks. Professional documents on demand.</p>
+        <div class="price">From 2,000 sats</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section id="how">
+  <div class="container">
+    <div class="section-label">Simple as 1-2-3</div>
+    <h2 class="section-title">How it works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Pick a Service</h3>
+        <p>Choose from 98 AI services. No account needed. No signup form.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Scan & Pay ⚡</h3>
+        <p>Get a QR code. Scan it with any Lightning wallet — Phoenix, Wallet of Satoshi, BlueWallet. Payment confirms in 1 second.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Get Your Result</h3>
+        <p>AI processes your task instantly. Done. No recurring charges. No surprise fees.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Compare -->
+<section id="pricing" style="background:var(--bg2)">
+  <div class="container" style="text-align:center">
+    <div class="section-label">Real Talk</div>
+    <h2 class="section-title">Cheaper than your data bundle</h2>
+    <div class="compare">
+      <div class="compare-row"><span class="item">ChatGPT Plus</span><span class="cost old">$20/month</span></div>
+      <div class="compare-row"><span class="item">Claude Pro</span><span class="cost old">$20/month</span></div>
+      <div class="compare-row"><span class="item">Grammarly Premium</span><span class="cost old">$12/month</span></div>
+      <div class="compare-row"><span class="item">1GB data bundle (avg)</span><span class="cost old">$1-5</span></div>
+      <div class="compare-row" style="border-bottom:2px solid var(--green)"><span class="item" style="color:var(--text)"><strong>The Ark — one task</strong></span><span class="cost new">50-5,000 sats (~$0.02-$2)</span></div>
+    </div>
+    <p style="color:var(--text-dim);font-size:.9rem;margin-top:24px;max-width:480px;margin-left:auto;margin-right:auto">You only pay when you actually need something. Use it once a week or ten times a day — you're always in control.</p>
+  </div>
+</section>
+
+<!-- Why Bitcoin Lightning -->
+<section>
+  <div class="container" style="text-align:center">
+    <div class="section-label">Why Bitcoin Lightning?</div>
+    <h2 class="section-title">Because it works everywhere</h2>
+    <div class="steps" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <div class="step">
+        <div style="font-size:2rem;margin-bottom:12px">🏦</div>
+        <h3>No Bank Needed</h3>
+        <p>No credit card, no PayPal, no bank account. Just download a Lightning wallet and go.</p>
+      </div>
+      <div class="step">
+        <div style="font-size:2rem;margin-bottom:12px">🌍</div>
+        <h3>No Country Limits</h3>
+        <p>Works in Nigeria, Kenya, South Africa, Ghana, Tanzania — and every other country on Earth.</p>
+      </div>
+      <div class="step">
+        <div style="font-size:2rem;margin-bottom:12px">⚡</div>
+        <h3>Instant & Cheap</h3>
+        <p>Payments confirm in 1 second. Transaction fees are near zero. No FX conversion headaches.</p>
+      </div>
+      <div class="step">
+        <div style="font-size:2rem;margin-bottom:12px">📱</div>
+        <h3>Phone-First</h3>
+        <p>Scan a QR code from your phone. That's it. Works on any smartphone with a Lightning wallet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <h2>Your first task is <span style="color:var(--green)">free</span> ⚡</h2>
+      <p>No signup. No email. No credit card. Just try it and see what AI can do for you.</p>
+      <a href="/free" class="btn btn-primary" style="font-size:1.1rem;padding:18px 48px">Try It Free Now →</a>
+      <p style="margin-top:20px;font-size:.8rem;color:var(--text-dim)">After that, pay per task. Cancel nothing because there's nothing to cancel.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>⚡ Powered by Lightning Network · <a href="/">The Ark AI</a></p>
+    <p style="margin-top:8px;font-size:.75rem">No accounts. No KYC. No subscriptions. Just sats and AI. 🌍</p>
+  </div>
+</footer>
+
+</body>
+</html>
