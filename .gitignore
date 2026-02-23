@@ -32,6 +32,27 @@ skills/bitcoin-agent/scripts/config.yaml
 skills/bitcoin-agent/references/deployment.md
 reports/bitcoin-lightning-ai-agent.md
 
+# Internal / Strategic (NEVER push)
+.openclaw/
+AGENTS.md
+SOUL.md
+USER.md
+HEARTBEAT.md
+TOOLS.md
+IDENTITY.md
+reports/
+tracking/
+assets/the-ark-pitch*
+assets/marketing/
+assets/hrf-application*
+skills/bitcoin-agent/assets/marketing/
+skills/bitcoin-agent/scripts/server.py
+skills/bitcoin-agent/scripts/llm_tasks.py
+skills/bitcoin-agent/scripts/test_client.py
+skills/bitcoin-agent/scripts/config.yaml.template
+skills/bitcoin-agent/references/pricing-guide.md
+bitcoin-agent/bin/
+
 # Node modules
 node_modules/
 
