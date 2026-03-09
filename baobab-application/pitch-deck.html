@@ -7,9 +7,9 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif; color: #fff; }
   .slide {
-    width: 100%; min-height: 100vh; padding: 60px 80px;
+    width: 100%; height: 100vh; max-height: 100vh; overflow: hidden; padding: 40px 60px;
     display: flex; flex-direction: column; justify-content: center;
-    page-break-after: always; position: relative;
+    page-break-after: always; page-break-inside: avoid; position: relative;
   }
   .slide:last-child { page-break-after: avoid; }
 
@@ -69,7 +69,7 @@
 
   .competitor-row {
     display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 10px;
-    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 16px;
+    padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 14px;
   }
   .light .competitor-row { border-bottom: 1px solid #eee; }
   .competitor-header { font-weight: 700; font-size: 14px; text-transform: uppercase; color: #aaa; }
@@ -143,7 +143,6 @@
 
 <!-- ===== SLIDE 4: THE PRODUCT ===== -->
 <div class="slide light">
-  <div class="logo" style="color: #1a1a1a;"><span>⚡</span> The Ark</div>
   <h2>The Product</h2>
   <p style="margin-bottom: 20px;">120+ AI services in one platform. ChatGPT-style interface. Instant Lightning payments.</p>
   <div class="grid-3">
@@ -185,26 +184,26 @@
 <div class="slide dark">
   <div class="logo"><span>⚡</span> The Ark</div>
   <h2>How It Works</h2>
-  <div class="grid-3" style="margin-top: 20px;">
-    <div class="card" style="text-align: center;">
-      <p style="font-size: 48px; margin-bottom: 15px;">1️⃣</p>
-      <h3>Choose a Task</h3>
-      <p style="font-size: 16px; color: #aaa;">Pick from 120+ services or just type what you need in the chat interface</p>
+  <div class="grid-3" style="margin-top: 15px;">
+    <div class="card" style="text-align: center; padding: 20px;">
+      <p style="font-size: 36px; margin-bottom: 8px;">1️⃣</p>
+      <h3 style="margin-bottom: 8px;">Choose a Task</h3>
+      <p style="font-size: 14px; color: #aaa;">Pick from 120+ services or just type what you need in the chat interface</p>
     </div>
-    <div class="card" style="text-align: center;">
-      <p style="font-size: 48px; margin-bottom: 15px;">2️⃣</p>
-      <h3>Pay with Lightning</h3>
-      <p style="font-size: 16px; color: #aaa;">Scan a QR code or pay from your wallet. Tasks cost 10–8,000 sats ($0.01–$8)</p>
+    <div class="card" style="text-align: center; padding: 20px;">
+      <p style="font-size: 36px; margin-bottom: 8px;">2️⃣</p>
+      <h3 style="margin-bottom: 8px;">Pay with Lightning</h3>
+      <p style="font-size: 14px; color: #aaa;">Scan a QR code or pay from your wallet. Tasks cost 10–8,000 sats ($0.01–$8)</p>
     </div>
-    <div class="card" style="text-align: center;">
-      <p style="font-size: 48px; margin-bottom: 15px;">3️⃣</p>
-      <h3>Get Results</h3>
-      <p style="font-size: 16px; color: #aaa;">AI processes your request instantly. Streamed in real-time. Done in seconds.</p>
+    <div class="card" style="text-align: center; padding: 20px;">
+      <p style="font-size: 36px; margin-bottom: 8px;">3️⃣</p>
+      <h3 style="margin-bottom: 8px;">Get Results</h3>
+      <p style="font-size: 14px; color: #aaa;">AI processes your request instantly. Streamed in real-time. Done in seconds.</p>
     </div>
   </div>
-  <div class="card" style="margin-top: 30px; text-align: center; background: rgba(247,147,26,0.1); border-color: rgba(247,147,26,0.3);">
-    <h3 style="color: #f7931a;">🤖 Machine-to-Machine (L402)</h3>
-    <p style="font-size: 16px; color: #aaa;">Other AI agents and apps can programmatically pay for and consume our services via the L402 protocol — no human in the loop needed.</p>
+  <div class="card" style="margin-top: 15px; text-align: center; padding: 15px; background: rgba(247,147,26,0.1); border-color: rgba(247,147,26,0.3);">
+    <h3 style="color: #f7931a; margin-bottom: 5px;">🤖 Machine-to-Machine (L402)</h3>
+    <p style="font-size: 14px; color: #aaa;">Other AI agents and apps can programmatically pay for and consume our services via the L402 protocol — no human in the loop needed.</p>
   </div>
   <div class="slide-number">5</div>
 </div>
@@ -233,13 +232,12 @@
       </div>
     </div>
   </div>
-  <p style="margin-top: 30px; font-size: 18px; color: #666;">M-Pesa proved Africans adopt innovative payment technology faster than anyone. We're applying the same model to AI.</p>
+  <p style="margin-top: 30px; font-size: 18px; color: #666;">Africa has the world's youngest population and fastest-growing smartphone adoption. The demand for AI tools is massive — the access isn't.</p>
   <div class="slide-number">6</div>
 </div>
 
 <!-- ===== SLIDE 7: TRACTION ===== -->
 <div class="slide dark">
-  <div class="logo"><span>⚡</span> The Ark</div>
   <h2>Traction — 3 Weeks In</h2>
   <div class="grid-4">
     <div class="card stat-card">
@@ -400,9 +398,8 @@
   <div class="grid-2">
     <div class="card" style="text-align: center; padding: 40px;">
       <p style="font-size: 64px;">👤</p>
-      <h3 style="margin-top: 15px;">[YOUR NAME]</h3>
-      <p style="color: #f7931a; font-weight: 600;">Founder & CEO</p>
-      <p style="font-size: 16px; margin-top: 15px; color: #666;">[YOUR BACKGROUND — education, experience, what drives you]</p>
+      <h3 style="margin-top: 15px;">Founder & CEO</h3>
+      <p style="color: #f7931a; font-weight: 600;">The Ark</p>
     </div>
     <div class="card" style="text-align: center; padding: 40px;">
       <p style="font-size: 64px;">🤖</p>
@@ -505,18 +502,18 @@
 <div class="slide dark" style="text-align: center; align-items: center;">
   <div class="logo"><span>⚡</span> The Ark</div>
   <p style="font-size: 24px; color: #f7931a; font-weight: 600; margin-bottom: 20px;">THE VISION</p>
-  <h1 style="font-size: 64px;">The M-Pesa<br>of AI.</h1>
+  <h1 style="font-size: 64px;">AI for the<br>Next Billion.</h1>
   <p class="subtitle" style="margin-top: 20px; font-size: 22px; max-width: 600px;">
-    M-Pesa brought banking to 50 million Africans.<br>
-    The Ark will bring AI to the next billion.
+    The Ark is bringing AI access to billions of people<br>
+    who are currently locked out by payment barriers.
   </p>
-  <div style="margin-top: 50px; padding: 30px; border: 2px solid #f7931a; border-radius: 16px; display: inline-block;">
+  <div style="margin-top: 40px; padding: 25px; border: 2px solid #f7931a; border-radius: 16px; display: inline-block;">
     <p style="font-size: 18px; color: #aaa;">We're raising</p>
     <p style="font-size: 48px; font-weight: 800; color: #f7931a;">$100,000</p>
     <p style="font-size: 18px; color: #aaa;">to reach product-market fit in 12 months</p>
   </div>
-  <p style="margin-top: 40px; font-size: 20px;">
-    <span class="highlight">arknode.ai</span> &nbsp;·&nbsp; [YOUR EMAIL] &nbsp;·&nbsp; [YOUR PHONE]
+  <p style="margin-top: 30px; font-size: 20px;">
+    <span class="highlight">arknode.ai</span>
   </p>
   <div class="slide-number">13</div>
 </div>
