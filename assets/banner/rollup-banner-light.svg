@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 2000" width="850" height="2000">
+  <defs>
+    <linearGradient id="green-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#16a34a"/>
+      <stop offset="100%" style="stop-color:#0891b2"/>
+    </linearGradient>
+    <linearGradient id="accent-line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:#7c3aed;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:0"/>
+    </linearGradient>
+    <linearGradient id="lightning" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B"/>
+      <stop offset="100%" style="stop-color:#DC2626"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#DC2626"/>
+      <stop offset="25%" style="stop-color:#F59E0B"/>
+      <stop offset="50%" style="stop-color:#16a34a"/>
+      <stop offset="75%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="ark-body" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#6d28d9"/>
+      <stop offset="100%" style="stop-color:#4338ca"/>
+    </linearGradient>
+    <linearGradient id="ark-hull" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4338ca"/>
+      <stop offset="100%" style="stop-color:#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="water1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0891b2;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="850" height="2000" fill="#fafafa"/>
+
+  <!-- Subtle top accent -->
+  <rect x="0" y="0" width="850" height="6" fill="url(#ring)"/>
+
+  <!-- ============== TOP SECTION: LOGO ============== -->
+  <g transform="translate(425, 280) scale(0.65)">
+    <circle cx="0" cy="0" r="256" fill="#0f0a2a"/>
+    <circle cx="0" cy="0" r="245" fill="none" stroke="url(#ring)" stroke-width="3" opacity="0.8"/>
+    <!-- Lightning glow -->
+    <polygon points="0,-176 -24,-71 8,-78 -16,14 44,-91 12,-84 32,-166" fill="#FFD700" opacity="0.1"/>
+    <!-- Ark hull -->
+    <path d="M -141 69 Q -116 134 0 134 Q 116 134 141 69 L 119 69 Q 104 114 0 114 Q -104 114 -119 69 Z" fill="url(#ark-hull)" stroke="#B388FF" stroke-width="1"/>
+    <!-- Ark body -->
+    <path d="M -101 69 L -84 -1 L 84 -1 L 101 69 Z" fill="url(#ark-body)" stroke="#B388FF" stroke-width="0.8"/>
+    <!-- Deck line -->
+    <line x1="-89" y1="34" x2="89" y2="34" stroke="#E040FB" stroke-width="0.8" opacity="0.6"/>
+    <!-- Windows -->
+    <circle cx="-46" cy="19" r="6" fill="#18FFFF" opacity="0.8"/>
+    <circle cx="0" cy="19" r="6" fill="#FFE44D" opacity="0.8"/>
+    <circle cx="46" cy="19" r="6" fill="#FF6B6B" opacity="0.8"/>
+    <!-- Lightning bolt -->
+    <polygon points="0,-176 -24,-71 8,-78 -16,14 44,-91 12,-84 32,-166" fill="url(#lightning)"/>
+    <!-- Water -->
+    <path d="M -186 122 Q -146 104 -101 122 Q -56 140 -11 122 Q 34 104 79 122 Q 124 140 169 122 Q 204 109 224 122" fill="none" stroke="url(#water1)" stroke-width="3"/>
+    <!-- THE ARK text -->
+    <text x="0" y="192" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="38" fill="url(#ring)" letter-spacing="10">THE ARK</text>
+    <text x="0" y="217" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="13" fill="#18FFFF" letter-spacing="5" opacity="0.8">AI × LIGHTNING</text>
+  </g>
+
+  <!-- ============== BRAND NAME ============== -->
+  <text x="425" y="540" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="72" fill="#1a1a2e" letter-spacing="-1">The Ark <tspan fill="url(#green-cyan)">AI</tspan></text>
+
+  <!-- Divider -->
+  <rect x="325" y="570" width="200" height="2" rx="1" fill="url(#accent-line)"/>
+
+  <!-- ============== MAIN SLOGAN ============== -->
+  <text x="425" y="670" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="52" fill="#1e293b" letter-spacing="-0.5">
+    <tspan x="425" dy="0">AI for Where</tspan>
+    <tspan x="425" dy="68">It Matters Most.</tspan>
+  </text>
+
+  <!-- ============== SECONDARY LINE ============== -->
+  <text x="425" y="850" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="28" fill="#64748b" letter-spacing="1">
+    No signup. No subscription.
+  </text>
+  <text x="425" y="895" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="30" fill="#d97706" letter-spacing="1">
+    Pay with Lightning ⚡
+  </text>
+
+  <!-- Divider -->
+  <rect x="250" y="950" width="350" height="1" rx="0.5" fill="url(#accent-line)"/>
+
+  <!-- ============== FEATURES SECTION ============== -->
+  
+  <!-- Feature 1 -->
+  <g transform="translate(130, 1030)">
+    <circle cx="0" cy="0" r="24" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+    <text x="0" y="7" text-anchor="middle" font-size="22">🧠</text>
+    <text x="50" y="-6" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="24" fill="#1e293b">120+ AI Services</text>
+    <text x="50" y="22" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="17" fill="#64748b">Research, code, translate, create</text>
+  </g>
+
+  <!-- Feature 2 -->
+  <g transform="translate(130, 1120)">
+    <circle cx="0" cy="0" r="24" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+    <text x="0" y="7" text-anchor="middle" font-size="22">⚡</text>
+    <text x="50" y="-6" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="24" fill="#1e293b">Bitcoin Lightning</text>
+    <text x="50" y="22" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="17" fill="#64748b">Instant payments from 50 sats</text>
+  </g>
+
+  <!-- Feature 3 -->
+  <g transform="translate(130, 1210)">
+    <circle cx="0" cy="0" r="24" fill="#faf5ff" stroke="#7c3aed" stroke-width="2"/>
+    <text x="0" y="7" text-anchor="middle" font-size="22">🔒</text>
+    <text x="50" y="-6" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="24" fill="#1e293b">Zero Data Collection</text>
+    <text x="50" y="22" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="17" fill="#64748b">No accounts, no tracking, no emails</text>
+  </g>
+
+  <!-- Feature 4 -->
+  <g transform="translate(130, 1300)">
+    <circle cx="0" cy="0" r="24" fill="#fefce8" stroke="#d97706" stroke-width="2"/>
+    <text x="0" y="7" text-anchor="middle" font-size="22">🌍</text>
+    <text x="50" y="-6" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="24" fill="#1e293b">Built for Africa</text>
+    <text x="50" y="22" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="17" fill="#64748b">Accessible AI for the next billion</text>
+  </g>
+
+  <!-- Divider -->
+  <rect x="250" y="1400" width="350" height="1" rx="0.5" fill="url(#accent-line)"/>
+
+  <!-- ============== QR CODE PLACEHOLDER ============== -->
+  <rect x="325" y="1450" width="200" height="200" rx="16" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="425" y="1560" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="20" fill="#64748b">QR CODE</text>
+  <text x="425" y="1585" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="14" fill="#94a3b8">Scan to try</text>
+
+  <text x="425" y="1700" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="26" fill="#0891b2" letter-spacing="1">arknode.ai</text>
+
+  <!-- ============== BOTTOM SECTION ============== -->
+  <rect x="0" y="1850" width="850" height="150" fill="#0f0a2a"/>
+  <rect x="0" y="1848" width="850" height="3" fill="url(#ring)"/>
+  
+  <text x="425" y="1910" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="300" font-size="18" fill="#94a3b8" letter-spacing="3">POWERED BY</text>
+  <text x="425" y="1950" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="24" fill="#FFE44D" letter-spacing="2">BITCOIN LIGHTNING NETWORK ⚡</text>
+</svg>
