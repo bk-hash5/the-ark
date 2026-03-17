@@ -200,9 +200,7 @@
   <rect x="250" y="1400" width="350" height="1" rx="0.5" fill="url(#accent-line)"/>
 
   <!-- ============== QR CODE PLACEHOLDER ============== -->
-  <rect x="325" y="1450" width="200" height="200" rx="16" fill="#1a1a2e" stroke="#7c3aed" stroke-width="2"/>
-  <text x="425" y="1560" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="20" fill="#94a3b8">QR CODE</text>
-  <text x="425" y="1585" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="14" fill="#64748b">Scan to try</text>
+  <image x="325" y="1450" width="200" height="200" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAApQAAAKUAQAAAACStJWRAAADOUlEQVR4nO3dS5LjIAyAYTGVPb7/KeEEmgVgxMPT3XZnClI/Cyd+fRVWKkAoTuW3W/zz66QIJiYmJiYmJiYmJibmu01RVR3HSF5NE/H5oBry3XyYvRZ26TsmJiYm5jrmK3/6YC669BGPdEMlunLDq8h5On9tm75jYmJiYq5jvurXHE5qiPF2ANQFJXf92jZ9x8TExMRcx3x9/YiICUDRpcj0rzSIXfqOiYmJibmD6VI78qlqyIcH5v2GiYmJifnZphkfdUMeTetHdSzkVbo5vNlrsk/fMTExMTHXMa/z6751GF8jvw4TExMT80ZL46PL1SBNh+hE+sP1a7v0HRMTExNzSdM559zw7cgHuyEpiIjEvLpUl5j+0+/ExMTExPxAs8zXeRtsujk8uylWzsjUPGcV5uswMTExMX/e7JCnWxdqijTMWn2koXbpOyYmJibmOmYTj2anYTjY57qgxPgIExMTE/NeS/kMzlxJVYI0fXPn3fqInqcq8TCn7/ydmJiYmJifbTZrRd0Kkdrc7jqlNywdhfNdxkeYmJiYmPeayfd27bdakq4WCLJF7CSPj1x7402/ExMTExPzs81SnyEeJab4UPYVzcrUeRWXAlU8msqqpsbqLn3HxMTExFzHnM7N2dk3bVO9w7yiQzObt0vfMTExMTHXMZv63k3dhTJIOsypzWzwwczwNYXtduk7JiYmJuY6ZruT9asb3V6j7mH2H2FiYmJi3m7zXLomFA1bj7rTPg9vl75jYmJiYq5j9tV/Lsc9XdL34BCPMDExMTEftLJ+1P03uUhKo6u5dJKvnc+VbHDyvTExMTExn7exPoOI1GCT7/b/V36cN4IMmQ3b9B0TExMTcx3zHB8Fc7FGl/rXR3b8VMJTvdbM3+3Sd0xMTEzMdcz+zyTmW4+8zaqb7T9i/QgTExMT81F7Xd4Z1oWalSSdPMd8HSYmJibm3XYdj3JLlb5dv+21JjqoqRyUZv126TsmJiYm5jqmiUfdHFxOW4iHqFkwquOj6NobjI8wMTExMe+3s57qkGKXx0Jl3NPlLpR0u2MsubpN3zExMTEx1zHdGE6etrhL3zExMTExMTExMTExMW37C9Gzg0oXLmaIAAAAAElFTkSuQmCC" style="image-rendering:pixelated" />
 
   <text x="425" y="1700" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="26" fill="#06b6d4" letter-spacing="1">arknode.ai</text>
 
