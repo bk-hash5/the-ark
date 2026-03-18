@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4; margin: 40px 50px; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11.5px;
+    line-height: 1.65;
+    color: #1a1a1a;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 50px;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 3px solid #f7931a;
+    padding-bottom: 15px;
+  }
+  .header h1 { font-size: 24px; color: #111; margin-bottom: 4px; }
+  .header .subtitle { font-size: 13px; color: #f7931a; font-weight: bold; }
+  .header .meta { font-size: 10px; color: #666; margin-top: 6px; }
+  h2 {
+    font-size: 15px;
+    margin-top: 22px;
+    margin-bottom: 8px;
+    color: #1a1a2e;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+  }
+  h3 { font-size: 12.5px; margin-top: 12px; margin-bottom: 4px; color: #333; }
+  .two-col { display: flex; gap: 20px; margin: 10px 0; }
+  .two-col > div { flex: 1; }
+  .box {
+    background: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 10px 0;
+  }
+  .box-orange {
+    background: #fff8f0;
+    border: 1px solid #f7931a;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 10px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 11px;
+  }
+  th { background: #1a1a2e; color: #fff; padding: 8px 10px; text-align: left; }
+  td { padding: 7px 10px; border-bottom: 1px solid #eee; }
+  tr:nth-child(even) { background: #f9f9f9; }
+  ul { margin-left: 18px; margin-bottom: 8px; }
+  li { margin-bottom: 3px; }
+  .qa { margin: 12px 0; }
+  .qa .q {
+    font-weight: bold;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+    font-size: 12px;
+  }
+  .qa .a {
+    margin-left: 12px;
+    color: #333;
+    margin-bottom: 12px;
+  }
+  .footer {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 2px solid #eee;
+    font-size: 10px;
+    color: #666;
+    text-align: center;
+  }
+  .label {
+    display: inline-block;
+    background: #f7931a;
+    color: #fff;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: bold;
+  }
+  code {
+    background: #f0f0f0;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 10.5px;
+    font-family: 'Courier New', monospace;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⚡ The Ark AI — Technical Overview</h1>
+  <div class="subtitle">Privacy-First AI on the Bitcoin Lightning Network</div>
+  <div class="meta">Lightning Labs Demo | March 18, 2026 | arknode.ai | thenode.it.com</div>
+</div>
+
+<h2>1. Origin Story</h2>
+
+<p>The Ark was born from a simple observation: the AI revolution is leaving behind the people who need it most. In Africa and the Global South, accessing tools like ChatGPT requires an international credit card, an email address, phone verification, and a $20/month subscription. For a student in Nairobi earning $150/month, that's 13% of their income — for a tool that costs the provider fractions of a cent per query.</p>
+
+<p>We asked: <strong>what if AI access was as simple as scanning a QR code?</strong></p>
+
+<p>The project is built by a two-entity team:</p>
+<ul>
+  <li><strong>The Navigator</strong> — a developer and product strategist based in East Africa, who identified the problem and steers the project direction, user experience, and go-to-market strategy.</li>
+  <li><strong>The Ark (AI Agent)</strong> — an autonomous AI agent running on OpenClaw, responsible for infrastructure, code, deployment, monitoring, security, and 24/7 operations. The Ark handles VPS management, heartbeat health checks, Nostr posting, bug fixes, and feature development — operating as a persistent engineering co-founder.</li>
+</ul>
+
+<p>This human-AI collaboration model is itself a demonstration of what we're building: AI that augments human capability rather than replacing it.</p>
+
+<h2>2. Architecture</h2>
+
+<div class="box">
+<h3>Stack Overview</h3>
+<table>
+  <tr><th>Layer</th><th>Technology</th><th>Purpose</th></tr>
+  <tr><td>Frontend</td><td>Static HTML/JS (PWA)</td><td>Mobile-first chat interface, installable app</td></tr>
+  <tr><td>API Server</td><td>FastAPI (Python)</td><td>Task routing, streaming, rate limiting</td></tr>
+  <tr><td>LLM</td><td>Qwen 2.5 72B (DeepInfra)</td><td>AI inference ($0.23/M tokens)</td></tr>
+  <tr><td>Voice/Image</td><td>OpenAI Whisper + DALL-E</td><td>TTS, transcription, image generation</td></tr>
+  <tr><td>Lightning</td><td>Phoenixd (JVM) + LNbits</td><td>Invoice generation, payment verification</td></tr>
+  <tr><td>Proxy</td><td>Nginx</td><td>TLS termination, static serving, routing</td></tr>
+  <tr><td>Infrastructure</td><td>DigitalOcean VPS (Ubuntu 24.04)</td><td>2 vCPU, 4GB RAM, 120GB SSD</td></tr>
+  <tr><td>Agent Ops</td><td>OpenClaw</td><td>Autonomous monitoring, deployment, updates</td></tr>
+</table>
+</div>
+
+<h3>Request Flow</h3>
+<p><code>User prompt → Nginx → FastAPI → Check free prompts / Generate LNbits invoice → User pays via Lightning → Phoenixd confirms HTLC → FastAPI streams Qwen response via SSE → User receives answer</code></p>
+
+<p><strong>Latency:</strong> Invoice generation: ~200ms. Payment confirmation: ~1s. First token: ~500ms after payment. Total: under 2 seconds end-to-end.</p>
+
+<h2>3. Service Catalog</h2>
+
+<div class="two-col">
+  <div class="box">
+    <h3>120+ Individual Services</h3>
+    <ul>
+      <li><strong>Dev Tools:</strong> code review, bug finder, unit tests, Dockerfile, CI/CD, Nginx configs</li>
+      <li><strong>Content:</strong> blog posts, SEO, social posts, ad copy, email drafts</li>
+      <li><strong>Business:</strong> pitch decks, privacy policies, contracts, NDAs, invoices</li>
+      <li><strong>Education:</strong> lesson plans, study guides, quizzes, essay feedback</li>
+      <li><strong>Data:</strong> JSON/CSV conversion, data cleaning, PDF extraction</li>
+      <li><strong>Legal:</strong> contract analysis, NDA templates, regulatory research</li>
+      <li><strong>Health:</strong> literature reviews, clinical notes, pharma research</li>
+      <li><strong>Voice:</strong> TTS, transcription, African language support</li>
+    </ul>
+  </div>
+  <div class="box">
+    <h3>6 Workflow Bundles</h3>
+    <ul>
+      <li><strong>Full Code Audit</strong> (1,200 sats): review + security + tests</li>
+      <li><strong>Launch Pack</strong> (1,500 sats): copy + SEO + social + ads</li>
+      <li><strong>Startup Kit</strong> (5,000 sats): pitch + privacy + terms</li>
+      <li><strong>Code Ship</strong> (2,000 sats): review + docs + tests + changelog + Docker</li>
+      <li><strong>Content Machine</strong> (2,200 sats): blog + SEO + social + email + hashtags</li>
+      <li><strong>API Launch</strong> (1,800 sats): API docs + README + CI/CD + Dockerfile</li>
+    </ul>
+    <p style="margin-top:8px;font-size:10px;color:#666;">Bundles chain multiple services into a single atomic Lightning payment.</p>
+  </div>
+</div>
+
+<h2>4. Pricing Model</h2>
+
+<table>
+  <tr><th>Tier</th><th>Price</th><th>Examples</th></tr>
+  <tr><td>Basic</td><td>10 sats (~$0.007)</td><td>Summarize, translate, research, commit messages</td></tr>
+  <tr><td>Standard</td><td>20 sats (~$0.015)</td><td>Regex, grammar, Dockerfile, SEO meta, email</td></tr>
+  <tr><td>Pro</td><td>100 sats (~$0.074)</td><td>Code review, unit tests, security scan, README</td></tr>
+  <tr><td>Premium</td><td>200 sats (~$0.15)</td><td>Blog posts, privacy policy, terms, lesson plans</td></tr>
+  <tr><td>Enterprise</td><td>500 sats (~$0.37)</td><td>Legal drafts, business plans, pitch decks</td></tr>
+  <tr><td>Voice/Image</td><td>3,000–8,000 sats</td><td>TTS generation, image creation (OpenAI)</td></tr>
+</table>
+<p style="font-size:10px;color:#666;">Our cost per task: &lt;1 sat (Qwen 2.5 72B at $0.23/M tokens). Margin: 90%+. Every new user = profit from first query.</p>
+
+<h2>5. Chama — Community AI Access</h2>
+
+<div class="box-orange">
+<p><strong>Chama</strong> (Swahili/Kikuyu) means "group" or "association." In East Africa, Chamas are informal savings groups where members pool money for shared goals. We brought this concept to AI access.</p>
+
+<h3>How It Works</h3>
+<ul>
+  <li><strong>Create a group</strong> — name it, make a first contribution (min 5 sats)</li>
+  <li><strong>Share invite code</strong> — up to 20 members per group</li>
+  <li><strong>Members contribute</strong> — each adds sats to the shared Lightning pool</li>
+  <li><strong>Use AI together</strong> — all members draw from the shared balance</li>
+</ul>
+
+<h3>Use Cases</h3>
+<ul>
+  <li><strong>Student Groups:</strong> 5 students × 10 sats = shared research, essays, study guides</li>
+  <li><strong>Dev Teams:</strong> Pool credits for code review, docs, debugging</li>
+  <li><strong>Small Businesses:</strong> Share AI across staff for content, SEO, customer comms</li>
+  <li><strong>NGOs/Community Orgs:</strong> Translation, learning materials, document creation</li>
+</ul>
+<p style="font-size:10px;margin-top:8px;">This is uniquely enabled by Lightning: instant micropayment pooling with no intermediary, no bank account required.</p>
+</div>
+
+<h2>6. L402 Protocol — Machine-to-Machine AI</h2>
+
+<div class="box">
+<p>The Ark supports the <strong>L402 payment protocol</strong> (formerly LSAT), enabling any AI agent or automated system to:</p>
+<ul>
+  <li>Discover services via <code>thenode.it.com/openapi.json</code></li>
+  <li>Receive HTTP 402 Payment Required responses with Lightning invoices</li>
+  <li>Pay programmatically and receive AI results</li>
+  <li>No API keys, no OAuth, no registration — just HTTP + Lightning</li>
+</ul>
+<p style="font-size:10px;margin-top:6px;">Machine discovery: <code>thenode.it.com/.well-known/ai-agent.json</code></p>
+</div>
+
+<h2>7. Privacy Architecture</h2>
+
+<ul>
+  <li><strong>Zero accounts:</strong> No signup, no login, no email, no phone number</li>
+  <li><strong>Zero tracking:</strong> No cookies, no analytics, no fingerprinting</li>
+  <li><strong>Zero data storage:</strong> Prompts and responses are not logged or stored</li>
+  <li><strong>Payment privacy:</strong> Lightning payments reveal no personal identity</li>
+  <li><strong>5 free prompts:</strong> IP-based rate limiting only — no identity required even for free tier</li>
+</ul>
+
+<h2>8. Key Metrics</h2>
+
+<table>
+  <tr><td><strong>Services</strong></td><td>120+ individual + 6 workflow bundles</td></tr>
+  <tr><td><strong>Lightning Balance</strong></td><td>~17,000 sats</td></tr>
+  <tr><td><strong>Uptime</strong></td><td>99.5%+ (Phoenixd running since Feb 19, 2026)</td></tr>
+  <tr><td><strong>Infrastructure Cost</strong></td><td>~$24/month (VPS + domain)</td></tr>
+  <tr><td><strong>AI Cost per Query</strong></td><td>&lt;1 sat ($0.00023 average)</td></tr>
+  <tr><td><strong>End-to-End Latency</strong></td><td>&lt;2 seconds (invoice → payment → first token)</td></tr>
+  <tr><td><strong>Free Tier</strong></td><td>5 prompts per user, all 120+ services</td></tr>
+</table>
+
+<h2>9. Expected Q&A</h2>
+
+<div class="qa">
+  <div class="q">Q: Why not just use the Lightning Network for payments on an existing AI platform?</div>
+  <div class="a">A: Existing platforms like ChatGPT are architecturally built around accounts and subscriptions. Privacy is an afterthought. We built from scratch with Lightning as the native payment rail — no accounts exist in our system at all. There's no database of users to hack, subpoena, or leak.</div>
+</div>
+
+<div class="qa">
+  <div class="q">Q: What LLM do you use? Why not run your own?</div>
+  <div class="a">A: We use Qwen 2.5 72B via DeepInfra at $0.23/M tokens. Running our own GPU inference would cost $2,000+/month and limit us to smaller models. By using API inference, we get a 72B-parameter model at &lt;1 sat per query. We're monitoring for Qwen 3.5 to upgrade when available. Voice and image generation use OpenAI APIs (Whisper, DALL-E).</div>
+</div>
+
+<div class="qa">
+  <div class="q">Q: How do you handle payment failures or Lightning routing issues?</div>
+  <div class="a">A: Phoenixd handles channel management and routing automatically. If a payment fails, the user simply doesn't get charged — no funds are at risk. Our invoice expiry is set appropriately, and the "I Paid" button allows manual confirmation. Phoenixd has been running continuously since Feb 19 with automatic reconnection on peer disconnects.</div>
+</div>
+
+<div class="qa">
+  <div class="q">Q: What's your channel capacity? Can you handle scale?</div>
+  <div class="a">A: Current channel balance is ~17,000 sats with Phoenixd managing liquidity automatically. For scale, Phoenixd opens channels on demand via ACINQ's LSP. Our bottleneck isn't Lightning — it's AI inference. Since we use DeepInfra's API, we can scale to thousands of concurrent requests without infrastructure changes.</div>
+</div>
+
+<div class="qa">
+  <div class="q">Q: How does the Chama model prevent abuse? What stops one member from draining the pool?</div>
+  <div class="a">A: Groups have fair usage tracking per member. Each member's usage is tracked against the pool, and the system enforces proportional access relative to contributions. Group creators can see usage breakdowns. The minimum contribution of 5 sats keeps the barrier low but non-zero.</div>
+</div>
+
+<div class="qa">
+  <div class="q">Q: How does L402 work in practice? Show me the flow.</div>
+  <div class="a">A: An agent sends a POST to our /task/stream endpoint. If no valid payment exists, we return HTTP 402 with a Lightning invoice in the WWW-Authenticate header. The agent pays the invoice, includes the preimage in subsequent requests, and receives the AI response. Our OpenAPI spec at /openapi.json documents all 120+ endpoints. Machine discovery is at /.well-known/ai-agent.json.</div>
+</div>
+
+<div class="qa">
+  <div class="q">Q: What's your moat? Can't someone just copy this?</div>
+  <div class="a">A: Three things: (1) We have 120+ production-tuned service prompts with structured output formatting — that's months of prompt engineering. (2) Workflow bundles that chain services atomically are unique. (3) The Chama model for community pooling is culturally specific and deeply integrated. Plus, our L402 support and machine-discoverable API make us the infrastructure layer, not just another chatbot.</div>
+</div>
+
+<div class="qa">
+  <div class="q">Q: What's the AI agent's role? How does that work?</div>
+  <div class="a">A: The Ark AI agent runs on OpenClaw — it's a persistent, autonomous agent that manages our entire infrastructure. It SSH's into the VPS, monitors service health every 30 minutes, deploys code changes, manages Nginx configs, checks Lightning channel health, posts to Nostr, and handles customer issues. It's essentially an AI engineering co-founder that works 24/7. The Navigator provides strategic direction and product decisions; The Ark executes.</div>
+</div>
+
+<div class="qa">
+  <div class="q">Q: What about regulatory concerns? KYC/AML?</div>
+  <div class="a">A: We're a software service, not a financial institution. We don't custody funds — Lightning payments are instant and settled directly. Our transactions are micro-payments (10–500 sats, typically under $0.50). We don't convert to fiat, don't hold user balances (except in Chama pools which are user-controlled), and operate below all regulatory thresholds. We comply with applicable software service regulations.</div>
+</div>
+
+<div class="qa">
+  <div class="q">Q: What's your revenue model and path to profitability?</div>
+  <div class="a">A: We're profitable per-query from day one. Our AI cost is &lt;1 sat per query; minimum charge is 10 sats. That's 90%+ gross margin. Infrastructure costs $24/month. We need ~3,500 queries/month at 10 sats average to break even. Scale economics improve from there — AI costs don't increase linearly with users.</div>
+</div>
+
+<div class="qa">
+  <div class="q">Q: What partnerships or integrations are you looking for?</div>
+  <div class="a">A: Three areas: (1) Lightning wallet integrations — let users access The Ark directly from their wallet apps. (2) Developer tools — embed our L402 API in coding agents and automation platforms. (3) Distribution in Africa — partnerships with mobile money platforms, educational institutions, and developer communities.</div>
+</div>
+
+<div class="footer">
+  <strong>The Ark AI</strong> | arknode.ai | thenode.it.com | Built on Lightning ⚡<br>
+  Contact: thenode.it.com/contact
+</div>
+
+</body>
+</html>

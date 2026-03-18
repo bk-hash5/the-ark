@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4; margin: 40px 50px; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #1a1a1a;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 50px;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #f7931a;
+    padding-bottom: 20px;
+  }
+  .header h1 {
+    font-size: 26px;
+    color: #111;
+    margin-bottom: 4px;
+  }
+  .header .subtitle {
+    font-size: 14px;
+    color: #f7931a;
+    font-weight: bold;
+  }
+  .header .meta {
+    font-size: 11px;
+    color: #666;
+    margin-top: 6px;
+  }
+  h2 {
+    font-size: 16px;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    color: #f7931a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  h3 {
+    font-size: 13px;
+    margin-top: 14px;
+    margin-bottom: 4px;
+    color: #333;
+  }
+  .time-marker {
+    display: inline-block;
+    background: #1a1a2e;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  .say {
+    background: #f8f8f8;
+    border-left: 3px solid #f7931a;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-style: italic;
+    border-radius: 0 4px 4px 0;
+  }
+  .action {
+    background: #eef6ff;
+    border-left: 3px solid #2196F3;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .action::before {
+    content: "👉 ACTION: ";
+    font-weight: bold;
+    color: #2196F3;
+  }
+  .tip {
+    background: #fff8e1;
+    border-left: 3px solid #ff9800;
+    padding: 8px 12px;
+    margin: 8px 0;
+    font-size: 11px;
+    border-radius: 0 4px 4px 0;
+  }
+  .tip::before {
+    content: "💡 TIP: ";
+    font-weight: bold;
+  }
+  ul { margin-left: 20px; margin-bottom: 8px; }
+  li { margin-bottom: 4px; }
+  .footer {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 2px solid #eee;
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+  }
+  .highlight {
+    background: #fff3cd;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⚡ The Ark AI</h1>
+  <div class="subtitle">Lightning Labs Demo Script — 3 Minutes</div>
+  <div class="meta">March 18, 2026 | arknode.ai | Pay-per-task AI on Lightning</div>
+</div>
+
+<h2>Opening — The Problem (0:00–0:30)</h2>
+
+<div class="say">
+"2 billion people in Africa and the Global South are being locked out of the AI revolution. Why? Three barriers: subscription paywalls that require international credit cards, mandatory identity verification that endangers journalists and activists, and data harvesting business models. We built The Ark to fix all three — using Bitcoin Lightning."
+</div>
+
+<div class="tip">Pause briefly here. Let the problem land. This audience understands Lightning — they'll immediately see where you're going.</div>
+
+<h2>The Solution — Live Demo (0:30–1:45)</h2>
+
+<div class="say">
+"The Ark is a privacy-first AI platform with 120+ services — all paid via Lightning. No accounts. No emails. No data collected. Let me show you."
+</div>
+
+<div class="action">Open arknode.ai on your phone/laptop. Show the clean chat interface.</div>
+
+<div class="say">
+"This is it. No login screen. No signup. You just type and go."
+</div>
+
+<div class="action">Type a prompt: <strong>"Write a 3-paragraph pitch for a Bitcoin startup targeting African markets"</strong> — tap Send.</div>
+
+<div class="say">
+"A Lightning invoice appears — 10 sats. That's $0.007. Not $20 a month. Not even $1. Ten sats."
+</div>
+
+<div class="action">Pay the invoice from your wallet (have Phoenix/Wallet of Satoshi ready). Show the response streaming in real-time.</div>
+
+<div class="say">
+"Payment confirmed, response streams instantly. The entire transaction — invoice generation, payment verification, AI execution — happens in under 2 seconds. That's Phoenixd + LNbits under the hood."
+</div>
+
+<div class="tip">If the demo gods are kind, this takes 5 seconds. If payment is slow, keep talking about the architecture while it processes.</div>
+
+<h2>Chama — Community AI Access (1:45–2:15)</h2>
+
+<div class="say">
+"Now here's what makes this uniquely African. In East Africa, we have a concept called <strong>Chama</strong> — community savings groups where people pool resources together. We brought that to AI."
+</div>
+
+<div class="action">Navigate to arknode.ai/groups — show the Chama interface.</div>
+
+<div class="say">
+"A group of 5 students can each contribute 10 sats and get shared AI access for research, essays, and study guides. Dev teams pool credits for code review. NGOs share translation and document creation. It's community-powered AI — and it all runs on Lightning group wallets."
+</div>
+
+<h2>Technical Edge & L402 (2:15–2:40)</h2>
+
+<div class="say">
+"For the builders in the room: we support <strong>L402</strong> — the machine-to-machine payment protocol. Any AI agent with a Lightning wallet can discover our services via our OpenAPI spec and pay programmatically. No API keys. No OAuth. Just HTTP 402 + a Lightning invoice. We also have workflow bundles — chain multiple services into a single atomic payment. Full code audit: review + security scan + tests for 1,200 sats."
+</div>
+
+<h2>Close — The Ask (2:40–3:00)</h2>
+
+<div class="say">
+"The Ark is live today at <strong>arknode.ai</strong>. 120+ services. 5 free prompts for everyone. Built on Phoenixd, LNbits, and FastAPI. We're looking for integration partnerships with Lightning wallets and developer tools. Every person who uses Lightning can now access AI without giving up their identity or their data. Thank you."
+</div>
+
+<div class="tip">End with confidence. Don't rush the last line. Let "without giving up their identity or their data" land.</div>
+
+<div class="footer">
+  <strong>Pre-Demo Checklist:</strong><br>
+  ☐ Phone/laptop with arknode.ai loaded &nbsp;
+  ☐ Lightning wallet funded (Phoenix or WoS) &nbsp;
+  ☐ Good internet connection<br>
+  ☐ Backup: screenshot of payment flow in case live demo fails &nbsp;
+  ☐ arknode.ai/groups tab ready
+</div>
+
+</body>
+</html>
