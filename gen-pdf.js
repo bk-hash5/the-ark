@@ -1,7 +1,7 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 
-const doc = new PDFDocument({ size: 'A4', margin: 50 });
+const doc = new PDFDocument({ size: 'A4', margin: 50, info: { Title: '', Author: '', Creator: ' ', Producer: ' ' } });
 doc.pipe(fs.createWriteStream('boardy-call-prep.pdf'));
 
 const W = doc.page.width - 100;
